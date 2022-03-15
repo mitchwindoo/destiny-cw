@@ -1,0 +1,1 @@
+select exists(select 1 from activities where playerdestinyid=:playerdestinyid and instanceid=:instanceid)

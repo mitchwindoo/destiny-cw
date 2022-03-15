@@ -1,0 +1,60 @@
+{
+  "pages": {
+    "/individual": {
+      "viewPath": "Page/Individual",
+      "title": "Individual Scores"
+    },
+    "/clan/:clanId": {
+      "viewPath": "Page/ClanIndividual",
+      "title": "Clan Scores"
+    },
+    "/standings": {
+      "viewPath": "Page/Standings",
+      "title": "Clan Scores"
+    },
+    "/": {
+      "viewPath": "Page/Home",
+      "title": "Welcome"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom",
+    "left": [
+      {
+        "viewPath": "Docks/Menu Vertical",
+        "id": "menu",
+        "viewParams": {},
+        "size": 210,
+        "resizable": false,
+        "iconUrl": "",
+        "modal": false,
+        "show": "onDemand",
+        "anchor": "fixed",
+        "content": "cover",
+        "autoBreakpoint": 768,
+        "handle": "hide"
+      }
+    ],
+    "top": [
+      {
+        "viewPath": "Framework/Breakpoint",
+        "id": "",
+        "viewParams": {
+          "path": "Header/Header",
+          "breakpointLarge": "820",
+          "breakpointMedium": "710",
+          "params": {}
+        },
+        "size": 58,
+        "resizable": false,
+        "iconUrl": "",
+        "modal": false,
+        "show": "visible",
+        "anchor": "fixed",
+        "content": "push",
+        "autoBreakpoint": 480,
+        "handle": "hide"
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "ScalarQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "67104f9b3baf7c58a5bde0abd281d4f514fec5ea1b0b33b4961aa95bcddbeb9b",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-03-14T17:18:13Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "playerdestinyid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "instanceid",
+        "sqlType": 3
+      }
+    ]
+  }
+}

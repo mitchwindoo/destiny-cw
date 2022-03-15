@@ -1,0 +1,60 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "757123a775b1f39ea90ab5fc235f1dc6b666d8704891758443efcef62bd77f46",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-03-14T21:45:19Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "destinyid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "name",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "membershiptype",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "characterids",
+        "sqlType": 7
+      }
+    ]
+  }
+}

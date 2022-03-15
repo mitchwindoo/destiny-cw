@@ -1,0 +1,237 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.key": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "icon": "home",
+            "text": "Home"
+          },
+          "path": "Page/Embedded/Title"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer_1"
+        },
+        "position": {
+          "basis": "12px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Welcome"
+        },
+        "position": {
+          "basis": "20px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "Page/Bold Page/Margins Page/Text"
+          },
+          "text": "Welcome to Destiny Clan Wars!"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer_2"
+        },
+        "position": {
+          "basis": "10px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Description"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "Page/Text Page/Margins"
+          },
+          "text": "Thank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. \nI hope to change that by publishing all of my application code to GitHub, licensed under GPL-3.0. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. \nCoding isn\u0027t my full-time job, but I know a little Python and have worked with APIs in the past, so I will do my best to deliver a fun interface for you and your clan to enjoy. \nIf you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon and 100% of your funds go to server costs and improvements. \nCurrently, I am running off of a Linode Nanode ($5/month) but I would like to upgrade that when it becomes financially viable to do so. \nThe first item on my list is to purchase an SSL certificate and domain name so we don\u0027t have to use my server\u0027s IP address. "
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer_3"
+        },
+        "position": {
+          "basis": "10px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "newTab": true,
+                    "url": "https://www.patreon.com/mitchwindoo"
+                  },
+                  "scope": "C",
+                  "type": "nav"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "basis": "120px",
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/monetization_on"
+                }
+              },
+              "style": {
+                "height": "46px",
+                "margin": "2.5px"
+              },
+              "text": "Patreon"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "newTab": true,
+                    "url": "https://github.com/mitchwindoo/destiny-cw"
+                  },
+                  "scope": "C",
+                  "type": "nav"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button_1"
+            },
+            "position": {
+              "basis": "120px",
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/code"
+                }
+              },
+              "style": {
+                "height": "46px",
+                "margin": "2.5px"
+              },
+              "text": "GitHub"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "page": "/standings"
+                  },
+                  "scope": "C",
+                  "type": "nav"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button_0"
+            },
+            "position": {
+              "basis": "120px",
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/show_chart"
+                }
+              },
+              "style": {
+                "height": "46px",
+                "margin": "2.5px"
+              },
+              "text": "Standings"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "50px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "style": {
+            "padding": "2.5px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Page/Page"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

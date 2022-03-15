@@ -1,0 +1,1 @@
+SELECT key FROM api_keys LIMIT 1

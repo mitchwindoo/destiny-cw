@@ -1,0 +1,123 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 48,
+      "width": 340
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "HorizontalMenu"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.items[0].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[0].target}, \"bold\", \"normal\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[1].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[1].target}, \"bold\", \"normal\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[2].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[2].target}, \"bold\", \"normal\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "itemStyle": {
+            "classes": "Menu/Item_Horizontal"
+          },
+          "items": [
+            {
+              "enabled": true,
+              "icon": {
+                "path": "material/home"
+              },
+              "items": [],
+              "label": "Home",
+              "style": {
+                "borderRightColor": "#FFFFFF",
+                "borderRightStyle": "solid",
+                "borderRightWidth": "1px",
+                "classes": ""
+              },
+              "target": "/"
+            },
+            {
+              "enabled": true,
+              "icon": {
+                "path": "material/show_chart"
+              },
+              "items": [],
+              "label": "Clan Scores",
+              "style": {
+                "borderRightColor": "#FFFFFF",
+                "borderRightStyle": "solid",
+                "borderRightWidth": "1px",
+                "classes": ""
+              },
+              "target": "/standings"
+            },
+            {
+              "enabled": true,
+              "icon": {
+                "path": "material/person"
+              },
+              "items": [],
+              "label": "Individual Scores",
+              "style": {
+                "classes": ""
+              },
+              "target": "/individual"
+            }
+          ],
+          "style": {
+            "classes": "Menu/Menu_Horizontal"
+          }
+        },
+        "type": "ia.navigation.horizontalmenu"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

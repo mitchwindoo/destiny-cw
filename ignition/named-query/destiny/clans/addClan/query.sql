@@ -1,0 +1,2 @@
+INSERT INTO clans(id,name,founder,founderbungieid,founderdestinyid,about,members,motto)
+VALUES (:clanId,:clanName,:clanFounder,:clanFounderBungieId,:clanFounderDestinyId,:clanAbout,:clanMembers,:clanMotto)

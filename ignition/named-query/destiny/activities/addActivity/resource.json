@@ -1,0 +1,165 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "42fe7742df3c1c6cda0f0ce6fd3a91e470a42fa01ef38815f100a9e0d557276e",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-03-14T17:35:27Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "playercharacterid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "playerdestinyid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "instanceid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "modes",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "mode",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "isprivate",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "referenceid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "timestamp",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "activityduration",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "assists",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "avgscoreperkill",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "avgscoreperlife",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "completed",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "completionreason",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "deaths",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "efficiency",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "fireteamid",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "kills",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "killsdeathsassists",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "killsdeathsratio",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "opponentsdefeated",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "score",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "standing",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "team",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "teamscore",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "timeplayed",
+        "sqlType": 7
+      }
+    ]
+  }
+}

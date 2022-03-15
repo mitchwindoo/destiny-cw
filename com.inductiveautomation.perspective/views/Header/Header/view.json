@@ -1,0 +1,263 @@
+{
+  "custom": {},
+  "params": {
+    "params": {},
+    "size": "medium"
+  },
+  "propConfig": {
+    "params.params": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.size": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 58,
+      "width": 839
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer End"
+        },
+        "position": {
+          "basis": "16px",
+          "shrink": 0
+        },
+        "props": {
+          "text": " "
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "id": "menu",
+                "type": "toggle"
+              },
+              "scope": "C",
+              "type": "dock"
+            }
+          }
+        },
+        "meta": {
+          "name": "Menu Dock"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.size} \u003d \"small\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "material/menu",
+          "style": {
+            "classes": "Header/Icon",
+            "marginRight": "10px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer End_2"
+        },
+        "position": {
+          "basis": "10px",
+          "shrink": 0
+        },
+        "props": {
+          "text": " "
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "page": "/"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Image"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "fit": {
+            "height": 40,
+            "mode": "contain",
+            "width": 40
+          },
+          "source": "https://www.pinclipart.com/picdir/big/150-1506852_destiny-clipart-destiny-game-destiny-symbols-png-download.png",
+          "style": {
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.image"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "page": "/"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer End_1"
+        },
+        "position": {
+          "basis": "10px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "cursor": "pointer"
+          },
+          "text": " "
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "page": "/"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "125px"
+        },
+        "props": {
+          "style": {
+            "cursor": "pointer",
+            "fontFamily": "Arial",
+            "fontSize": "22px",
+            "fontWeight": "bold"
+          },
+          "text": "Clan Wars"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Menu"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.size} !\u003d \"small\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "Docks/Menu Horizontal",
+          "style": {
+            "marginBottom": "10px",
+            "marginLeft": "16px",
+            "marginRight": "16px",
+            "marginTop": "10px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Filler"
+        },
+        "position": {
+          "basis": "5px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "text": " "
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer End_0"
+        },
+        "position": {
+          "basis": "16px",
+          "shrink": 0
+        },
+        "props": {
+          "text": " "
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.backgroundColor": {
+        "binding": {
+          "config": {
+            "path": "session.props.theme"
+          },
+          "transforms": [
+            {
+              "code": "\tif \"dark\" in value:\n\t\treturn \"var(--neutral-10)\"\n\telse:\n\t\treturn \"\"",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "style": {
+        "classes": "Header/Header"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}
