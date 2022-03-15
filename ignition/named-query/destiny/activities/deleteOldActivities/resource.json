@@ -12,13 +12,14 @@
     "fallbackValue": "",
     "maxReturnSize": 100,
     "cacheUnit": "SEC",
+    "description": "Deletes any activities older than 3 months to conserve database space.",
     "type": "UpdateQuery",
     "enabled": true,
     "cacheAmount": 1,
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "c4207fe2f8926e0ff21dd0538dceb1020159a38d73bd33412857eaca45d30a02",
+    "lastModificationSignature": "8992909e6a89cdbed4c5ab284a56c50efeca4f92391e742ce80ba255a04ff0fb",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +28,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-14T20:51:37Z"
+      "timestamp": "2022-03-15T17:12:02Z"
     }
   }
 }
