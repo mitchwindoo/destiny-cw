@@ -56,7 +56,6 @@
     "geolocation": {},
     "locale": "en-US",
     "securityLevels": [],
-    "theme": "light-warm",
-    "timeZoneId": "Etc/UTC"
+    "theme": "light-warm"
   }
 }

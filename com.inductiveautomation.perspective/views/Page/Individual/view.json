@@ -213,7 +213,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "playerName",
+              "field": "playerid",
               "footer": {
                 "align": "center",
                 "justify": "left",
@@ -257,7 +257,7 @@
                   }
                 }
               },
-              "render": "auto",
+              "render": "view",
               "resizable": true,
               "sort": "none",
               "sortable": true,
@@ -272,7 +272,7 @@
                 }
               },
               "viewParams": {},
-              "viewPath": "",
+              "viewPath": "Page/Embedded/playerLink",
               "visible": true,
               "width": ""
             },
@@ -281,7 +281,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "clanName",
+              "field": "clanid",
               "footer": {
                 "align": "center",
                 "justify": "left",
@@ -325,7 +325,7 @@
                   }
                 }
               },
-              "render": "auto",
+              "render": "view",
               "resizable": true,
               "sort": "none",
               "sortable": true,
@@ -340,7 +340,7 @@
                 }
               },
               "viewParams": {},
-              "viewPath": "",
+              "viewPath": "Page/Embedded/clanLink",
               "visible": true,
               "width": ""
             }

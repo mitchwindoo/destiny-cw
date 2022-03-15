@@ -1,7 +1,7 @@
 SELECT
 	ROUND(SUM((activities.kills * activities.killsdeathsratio) * 100)) AS "score", 
-	players."name" AS "playerName", 
-	clans."name" AS "clanName",
+	players."destinyid" AS "playerid", 
+	clans."id" AS "clanid",
 	ROW_NUMBER () OVER (ORDER BY SUM((activities.kills * activities.killsdeathsratio) * 100) desc) as position
 FROM
 	activities
@@ -16,7 +16,7 @@ FROM
 WHERE 
 	clans."id" = :clanid AND timestamp between '2022-03-15 17:00:00+00' and now()
 GROUP BY
-	players."name",
-	clans."name"
+	players."destinyid",
+	clans."id"
 ORDER BY
 	SUM((activities.kills * activities.killsdeathsratio) * 100) desc

@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "525bfd3e5962d025731a33bf2dbd78b3cc40916feaa20adaabc84d6db302ed31",
+    "lastModificationSignature": "77ed389be93cde106292c4b45d8a38662ea5cd1c0ca0c6def09cae079a5b8ba3",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +27,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-15T16:07:59Z"
+      "timestamp": "2022-03-15T19:22:03Z"
     }
   }
 }

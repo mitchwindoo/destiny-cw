@@ -258,7 +258,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "playerName",
+              "field": "playerid",
               "footer": {
                 "align": "center",
                 "justify": "left",
@@ -302,7 +302,7 @@
                   }
                 }
               },
-              "render": "auto",
+              "render": "view",
               "resizable": true,
               "sort": "none",
               "sortable": true,
@@ -317,7 +317,7 @@
                 }
               },
               "viewParams": {},
-              "viewPath": "",
+              "viewPath": "Page/Embedded/playerLink",
               "visible": true,
               "width": ""
             }

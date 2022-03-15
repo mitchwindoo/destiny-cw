@@ -1,5 +1,9 @@
 {
   "pages": {
+    "/player/:playerId": {
+      "viewPath": "Page/PlayerMatches",
+      "title": "Player Scores"
+    },
     "/individual": {
       "viewPath": "Page/Individual",
       "title": "Individual Scores"
