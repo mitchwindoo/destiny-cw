@@ -1,5 +1,6 @@
 # Global Imports
 import json
+import time
 # Global Props
 apiKey = system.db.runNamedQuery("api/getApiKey", {})
 apiRoot = "https://www.bungie.net/Platform"
@@ -7,6 +8,7 @@ header = {"X-API-Key":apiKey}
 logger = system.util.getLogger("bungieAPI")
 
 def getPlayers(clanId):
+	startTime = time.time()
 	## Generic API Information
 	apiPath = apiRoot + "/GroupV2/" + str(clanId) + "/Members/"
 	apiCall = json.loads(system.net.httpGet(apiPath,headerValues=header))
@@ -38,14 +40,13 @@ def getPlayers(clanId):
 				queryPath = 'destiny/clans/addPlayers'
 				system.db.runNamedQuery(queryPath, queryParams)
 				logger.info("Added " + str(player['destinyUserInfo']['displayName']) + " To Player Database")
-				print "Added " + str(player['destinyUserInfo']['displayName']) + " To Player Database"
 			except:
 				logger.error("Unable to Locate Player Account for ID " + player['destinyUserInfo']['membershipId'])
-				print "Unable to Locate Player Account for ID " + player['destinyUserInfo']['membershipId']
 				pass
 		else:
 			logger.info(str(player['destinyUserInfo']['displayName']) + " Already Exists in Database")
-			print str(player['destinyUserInfo']['displayName']) + " Already Exists in Database"
+	executionTime = (time.time() - startTime)
+	logger.info("getPlayers for Clan ID " + str(clanId) + " Script completed in " + str(executionTime) + " seconds")
 			
 def addClan(clanId):
 	apiPath = apiRoot + "/GroupV2/" + str(clanId) + "/"
