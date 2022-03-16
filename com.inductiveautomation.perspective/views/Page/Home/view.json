@@ -77,22 +77,6 @@
       {
         "meta": {
           "hasDelegate": true,
-          "name": "Description"
-        },
-        "position": {
-          "shrink": 0
-        },
-        "props": {
-          "style": {
-            "classes": "Page/Text Page/Margins"
-          },
-          "text": "Thank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. \nI hope to change that by publishing all of my application code to GitHub, licensed under GPL-3.0. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. \nCoding isn\u0027t my full-time job, but I know a little Python and have worked with APIs in the past, so I will do my best to deliver a fun interface for you and your clan to enjoy. \nIf you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon and 100% of your funds go to server costs and improvements. \nCurrently, I am running off of a Linode Nanode ($5/month) but I would like to upgrade that when it becomes financially viable to do so. \nThe first item on my list is to purchase an SSL certificate and domain name so we don\u0027t have to use my server\u0027s IP address. "
-        },
-        "type": "ia.display.label"
-      },
-      {
-        "meta": {
-          "hasDelegate": true,
           "name": "Spacer_3"
         },
         "position": {
@@ -100,6 +84,21 @@
           "shrink": 0
         },
         "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Markdown"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "source": "Thank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. I hope to change that by publishing all of my application code to GitHub, licensed under GPL-3.0. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. Coding isn\u0027t my full-time job, but I know a little Python and have worked with APIs in the past, so I will do my best to deliver a fun experience for you and your clan to enjoy. If you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon and 100% of your funds go to server costs and improvements. \n\n### Server Costs\n#### Linode Server: $10/month\n#### SSL Certificate: $52/year\n#### Domain Name: $13/year",
+          "style": {
+            "padding": "20px"
+          }
+        },
+        "type": "ia.display.markdown"
       },
       {
         "children": [
