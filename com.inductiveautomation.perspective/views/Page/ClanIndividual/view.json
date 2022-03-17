@@ -79,20 +79,168 @@
       },
       {
         "meta": {
-          "hasDelegate": true,
-          "name": "Description"
+          "name": "Label"
         },
         "position": {
-          "shrink": 0
+          "basis": "32px"
         },
         "props": {
+          "alignVertical": "bottom",
           "style": {
-            "classes": "Page/Text Page/Margins",
-            "padding": "10px"
+            "fontFamily": "Arial",
+            "fontWeight": "bold",
+            "marginLeft": "10px"
           },
-          "text": "Let\u0027s start simple, scoring will reset on the weekly reset and be archived into the previous week. Right now I am only tracking matches that Bungie tags for Iron Banner. \nThe SCORE calculation is \"({kills} x {k/d ratio}) x 100\""
+          "text": "Clan Awards"
         },
         "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "highestkd_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.clanId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.clanId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the Most games played",
+                "awardName": "MVP",
+                "namedQuery": "destiny/activities/awardsMostGames"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "highestAvgScore"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.clanId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.clanId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
+                "awardName": "Top AVG Score",
+                "namedQuery": "destiny/activities/awardsHighestAvgScore"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "topkd"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.clanId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.clanId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the Highest score in a single game *Minimum 10 games played*",
+                "awardName": "Top Single Game Score",
+                "namedQuery": "destiny/activities/awardsHighestSingleGameScore"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "highestkd"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.clanId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.clanId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the Kill/Death Ratio *Minimum 10 games played*",
+                "awardName": "Top K/D",
+                "namedQuery": "destiny/activities/awardsHighestKD"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "spicyGrinders"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "params": {
+                "clanId": 1163459
+              },
+              "path": "Page/Embedded/spicyGrinders",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "200px"
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "justify": "space-around",
+          "style": {
+            "margin": "5px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
       },
       {
         "meta": {
@@ -170,6 +318,74 @@
               "resizable": false,
               "sort": "none",
               "sortable": false,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 75
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "gamesplayed",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Games"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
               "strictWidth": true,
               "style": {
                 "classes": ""

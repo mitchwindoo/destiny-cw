@@ -145,6 +145,74 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
+              "field": "gamesplayed",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Games"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 75
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
               "field": "score",
               "footer": {
                 "align": "center",
@@ -230,7 +298,7 @@
                 },
                 "title": "Player"
               },
-              "justify": "auto",
+              "justify": "left",
               "number": "value",
               "numberFormat": "0,0.##",
               "progressBar": {
@@ -274,7 +342,7 @@
               "viewParams": {},
               "viewPath": "Page/Embedded/playerLink",
               "visible": true,
-              "width": ""
+              "width": 100
             },
             {
               "align": "center",
@@ -296,9 +364,9 @@
                 "style": {
                   "classes": ""
                 },
-                "title": "Clan"
+                "title": "Score"
               },
-              "justify": "auto",
+              "justify": "left",
               "number": "value",
               "numberFormat": "0,0.##",
               "progressBar": {
@@ -342,7 +410,7 @@
               "viewParams": {},
               "viewPath": "Page/Embedded/clanLink",
               "visible": true,
-              "width": ""
+              "width": 100
             }
           ],
           "filter": {

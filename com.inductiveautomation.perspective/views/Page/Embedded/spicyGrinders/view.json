@@ -1,0 +1,133 @@
+{
+  "custom": {
+    "awardDetails": [
+      {
+        "playerid": "4611686018429685704",
+        "score": 27
+      }
+    ]
+  },
+  "params": {
+    "clanId": 1163459
+  },
+  "propConfig": {
+    "custom.awardDetails": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "clanid": "{view.custom.playerInfo.clanid}"
+          },
+          "queryPath": "destiny/activities/awardsSpicyGrinders",
+          "returnFormat": "json"
+        },
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "params.clanId": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 150,
+      "width": 150
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "color": "--success",
+            "fontFamily": "Arial",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "margin": "2.5px",
+            "textAlign": "center",
+            "textTransform": "uppercase"
+          },
+          "text": "Cajun\u0027s Spicy Grinders"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignVertical": "top",
+          "style": {
+            "color": "--div-13",
+            "fontFamily": "Arial",
+            "fontSize": "10px",
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "margin": "2.5px",
+            "textAlign": "center",
+            "textTransform": "capitalize"
+          },
+          "text": "Awarded to the player(s) who played over 50 Games"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "clanid": "{view.custom.playerInfo.clanid}"
+                },
+                "queryPath": "destiny/activities/awardsSpicyGrinders"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "enableHeader": false,
+          "pager": {
+            "bottom": false
+          },
+          "rows": {
+            "striped": {
+              "enabled": false
+            }
+          },
+          "selection": {
+            "enableRowSelection": false
+          }
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "padding": "2.5px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

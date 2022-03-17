@@ -8,6 +8,12 @@ apiRoot = "https://www.bungie.net/Platform"
 header = {"X-API-Key":apiKey}
 logger = system.util.getLogger("bungieAPI")
 
+#def getPostGameCarnageReport(activityId,destinyMembershipId):
+	#apiPath = apiRoot + "/Destiny2/Stats/PostGameCarnageReport/" + str(activityId) + "/"
+	#apiCall = system.net.httpGet(apiPath,headerValues=header)
+	#print apiCall
+	#logger.info("getPostGameCarnageReport Completed")
+
 def ironBanner(membershipType,destinyMembershipId,characterId):
 	apiPath = apiRoot + "/Destiny2/" + str(membershipType) + "/Account/" + str(destinyMembershipId) + "/Character/" + str(characterId) + "/Stats/Activities/?mode=19"
 	try:

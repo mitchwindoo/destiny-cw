@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "4a4d2a8e72446e49673423d3d92172956d4498dfebade5c5483fa076228b273e",
+    "lastModificationSignature": "e188015f1ee58e220d75f48e653083ad8fbee8d385508e7f5ededa8e1bd9b2b8",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +27,14 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-16T20:05:44Z"
-    }
+      "timestamp": "2022-03-16T22:33:52Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "clanid",
+        "sqlType": 2
+      }
+    ]
   }
 }

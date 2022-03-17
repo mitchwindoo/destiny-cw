@@ -1,7 +1,8 @@
 SELECT
 	ROUND(SUM((activities.kills * activities.killsdeathsratio) * 100)) AS "Score", 
 	clans."id" AS "clanId",
-	ROW_NUMBER () OVER (ORDER BY SUM((activities.kills * activities.killsdeathsratio) * 100) desc) as position
+	ROW_NUMBER () OVER (ORDER BY SUM((activities.kills * activities.killsdeathsratio) * 100) desc) as position,
+	COUNT (clans."id") as "gamesplayed"
 FROM
 	activities
 	INNER JOIN
