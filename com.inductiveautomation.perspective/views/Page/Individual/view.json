@@ -37,20 +37,116 @@
       },
       {
         "meta": {
-          "hasDelegate": true,
-          "name": "Description"
+          "name": "Label"
         },
         "position": {
-          "shrink": 0
+          "basis": "32px"
         },
         "props": {
+          "alignVertical": "bottom",
           "style": {
-            "classes": "Page/Text Page/Margins",
-            "padding": "10px"
+            "fontFamily": "Arial",
+            "fontWeight": "bold",
+            "marginLeft": "10px"
           },
-          "text": "Let\u0027s start simple, scoring will reset on the weekly reset and be archived into the previous week. Right now I am only tracking matches that Bungie tags for Iron Banner. \nThe SCORE calculation is \"({kills} x {k/d ratio}) x 100\""
+          "text": "Individual Awards"
         },
         "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "mvp"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the Most games played",
+                "awardName": "MVP",
+                "clanId": "",
+                "namedQuery": "destiny/activities/awardsTotalMostGames"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "avgScore"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
+                "awardName": "Top AVG Score",
+                "clanId": "",
+                "namedQuery": "destiny/activities/awardsTotalHighestAvgScore"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "singleScore"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the Highest score in a single game *Minimum 10 games played*",
+                "awardName": "Top Single Game Score",
+                "clanId": "",
+                "namedQuery": "destiny/activities/awardsTotalHighestSingleGameScore"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "kd"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the Kill/Death Ratio *Minimum 10 games played*",
+                "awardName": "Top K/D",
+                "clanId": "",
+                "namedQuery": "destiny/activities/awardsTotalHighestKD"
+              },
+              "path": "Page/Embedded/clanAward",
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "200px"
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "justify": "space-around",
+          "style": {
+            "margin": "5px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
       },
       {
         "meta": {

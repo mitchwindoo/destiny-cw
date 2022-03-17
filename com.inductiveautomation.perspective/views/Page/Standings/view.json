@@ -48,7 +48,7 @@
             "classes": "Page/Text Page/Margins",
             "padding": "10px"
           },
-          "text": "Let\u0027s start simple, scoring will reset on the weekly reset and be archived into the previous week. Right now I am only tracking matches that Bungie tags for Iron Banner. \nThe SCORE calculation is \"({kills} x {k/d ratio}) x 100\""
+          "text": "The SCORE calculation is \"(kills x k/d) x 100\" ex. (12 kills x 1.4 k/d) x 100 \u003d 1680"
         },
         "type": "ia.display.label"
       },

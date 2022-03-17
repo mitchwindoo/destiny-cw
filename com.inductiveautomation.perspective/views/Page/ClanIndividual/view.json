@@ -99,7 +99,7 @@
         "children": [
           {
             "meta": {
-              "name": "highestkd_0"
+              "name": "mvp"
             },
             "position": {
               "shrink": 0
@@ -118,7 +118,7 @@
               "params": {
                 "awardDesc": "Awarded to the player with the Most games played",
                 "awardName": "MVP",
-                "namedQuery": "destiny/activities/awardsMostGames"
+                "namedQuery": "destiny/activities/awardsClanMostGames"
               },
               "path": "Page/Embedded/clanAward",
               "useDefaultViewWidth": true
@@ -127,7 +127,7 @@
           },
           {
             "meta": {
-              "name": "highestAvgScore"
+              "name": "avgScore"
             },
             "position": {
               "shrink": 0
@@ -146,7 +146,7 @@
               "params": {
                 "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
                 "awardName": "Top AVG Score",
-                "namedQuery": "destiny/activities/awardsHighestAvgScore"
+                "namedQuery": "destiny/activities/awardsClanHighestAvgScore"
               },
               "path": "Page/Embedded/clanAward",
               "useDefaultViewWidth": true
@@ -155,7 +155,7 @@
           },
           {
             "meta": {
-              "name": "topkd"
+              "name": "singleScore"
             },
             "position": {
               "shrink": 0
@@ -174,7 +174,7 @@
               "params": {
                 "awardDesc": "Awarded to the player with the Highest score in a single game *Minimum 10 games played*",
                 "awardName": "Top Single Game Score",
-                "namedQuery": "destiny/activities/awardsHighestSingleGameScore"
+                "namedQuery": "destiny/activities/awardsClanHighestSingleGameScore"
               },
               "path": "Page/Embedded/clanAward",
               "useDefaultViewWidth": true
@@ -183,7 +183,7 @@
           },
           {
             "meta": {
-              "name": "highestkd"
+              "name": "kd"
             },
             "position": {
               "shrink": 0
@@ -202,7 +202,7 @@
               "params": {
                 "awardDesc": "Awarded to the player with the Kill/Death Ratio *Minimum 10 games played*",
                 "awardName": "Top K/D",
-                "namedQuery": "destiny/activities/awardsHighestKD"
+                "namedQuery": "destiny/activities/awardsClanHighestKD"
               },
               "path": "Page/Embedded/clanAward",
               "useDefaultViewWidth": true
