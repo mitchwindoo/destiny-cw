@@ -77,7 +77,7 @@
             "textAlign": "center",
             "textTransform": "capitalize"
           },
-          "text": "Awarded to the player(s) who played over 50 Games"
+          "text": "Player(s) who played over 50 Games"
         },
         "type": "ia.display.label"
       },
@@ -125,6 +125,8 @@
     "props": {
       "direction": "column",
       "style": {
+        "classes": "card shadows/depth-1 utils/m-64-64-0-64",
+        "margin": "5px",
         "padding": "2.5px"
       }
     },

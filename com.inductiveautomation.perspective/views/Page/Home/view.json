@@ -37,63 +37,13 @@
       },
       {
         "meta": {
-          "hasDelegate": true,
-          "name": "Spacer_1"
-        },
-        "position": {
-          "basis": "12px",
-          "shrink": 0
-        },
-        "type": "ia.display.label"
-      },
-      {
-        "meta": {
-          "hasDelegate": true,
-          "name": "Welcome"
-        },
-        "position": {
-          "basis": "20px",
-          "shrink": 0
-        },
-        "props": {
-          "style": {
-            "classes": "Page/Bold Page/Margins Page/Text"
-          },
-          "text": "Welcome to Destiny Clan Wars!"
-        },
-        "type": "ia.display.label"
-      },
-      {
-        "meta": {
-          "hasDelegate": true,
-          "name": "Spacer_2"
-        },
-        "position": {
-          "basis": "10px",
-          "shrink": 0
-        },
-        "type": "ia.display.label"
-      },
-      {
-        "meta": {
-          "hasDelegate": true,
-          "name": "Spacer_3"
-        },
-        "position": {
-          "basis": "10px",
-          "shrink": 0
-        },
-        "type": "ia.display.label"
-      },
-      {
-        "meta": {
           "name": "Markdown"
         },
         "position": {
           "grow": 1
         },
         "props": {
-          "source": "Thank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. I hope to change that by publishing all of my application code to GitHub, licensed under GPL-3.0. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. Coding isn\u0027t my full-time job, but I know a little Python and have worked with APIs in the past, so I will do my best to deliver a fun experience for you and your clan to enjoy. If you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon and 100% of your funds go to server costs and improvements. \n\n### Server Costs\n#### Linode Server: $10/month\n#### SSL Certificate: $52/year\n#### Domain Name: $13/year",
+          "source": "## Welcome to Destiny 2 Clan Wars\n#\n---\n#\nThank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. I hope to change that by publishing all of my application code to GitHub, licensed under GPL-3.0. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. Coding isn\u0027t my full-time job, but I know a little Python and have worked with APIs in the past, so I will do my best to deliver a fun experience for you and your clan to enjoy. If you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon and 100% of your funds go to server costs and improvements. \n#\n---\n#\n## How To Join\nSend me a direct message on Discord with your Clan link from Bungie.net.\nDiscord Username: **MitchWindoo#4216**\n#\n---\n#\n## Financial Disclosure\n**Linode Server: $120/year**\n#\n**SSL Certificate: $52/year**\n#\n**Domain Name: $13/year**",
           "style": {
             "padding": "20px"
           }

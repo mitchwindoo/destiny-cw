@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "14px",
+      "lineHeight": "24px",
+      "textAlign": "center",
+      "textTransform": "uppercase"
+    }
+  }
+}

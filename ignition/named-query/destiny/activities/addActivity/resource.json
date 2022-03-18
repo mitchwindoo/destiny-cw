@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "42fe7742df3c1c6cda0f0ce6fd3a91e470a42fa01ef38815f100a9e0d557276e",
+    "lastModificationSignature": "0bd6a054d503523018e48249a8807cd7a06f5de4fe40561c15548d04c0eae03c",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +27,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-14T17:35:27Z"
+      "timestamp": "2022-03-18T02:03:49Z"
     },
     "parameters": [
       {
@@ -158,6 +158,36 @@
       {
         "type": "Parameter",
         "identifier": "timeplayed",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "kills_precision",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "kills_grenade",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "kills_melee",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "kills_super",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "kills_ability",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "weapons",
         "sqlType": 7
       }
     ]

@@ -1,21 +1,18 @@
 {
   "custom": {
-    "awardDetails": {
-      "playerId": "4611686018429685704",
-      "score": 2695.2363991531834
-    },
+    "awardDetails": null,
     "playerInfo": {
-      "characterids": "[\"2305843009267857252\", \"2305843009267857254\", \"2305843009267857255\"]",
+      "characterids": "[\"2305843009260928881\", \"2305843009378868735\", \"2305843009654204283\"]",
       "clanid": 1163459,
-      "destinyid": "4611686018429685704",
+      "destinyid": "4611686018432886684",
       "membershiptype": 1,
-      "name": "Law Dog XIII"
+      "name": "MitchWindoo"
     }
   },
   "params": {
     "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
     "awardName": "Highest AVG Score",
-    "clanId": 1163459,
+    "clanId": 1422232,
     "namedQuery": "destiny/activities/awardsHighestAvgScore"
   },
   "propConfig": {
@@ -90,6 +87,15 @@
           "shrink": 0
         },
         "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.awardDetails}) \u003e 0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
           "props.text": {
             "binding": {
               "config": {
@@ -121,6 +127,15 @@
           "shrink": 0
         },
         "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.awardDetails}) \u003e 0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
           "props.text": {
             "binding": {
               "config": {
@@ -164,6 +179,15 @@
           "shrink": 0
         },
         "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.awardDetails}) \u003e 0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
           "props.text": {
             "binding": {
               "config": {
@@ -178,7 +202,7 @@
             "color": "--info",
             "cursor": "pointer",
             "fontFamily": "Arial",
-            "fontSize": "16px",
+            "fontSize": "14px",
             "fontWeight": "bold",
             "margin": "2.5px",
             "textAlign": "center",
@@ -197,6 +221,15 @@
           "shrink": 0
         },
         "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.awardDetails}) \u003e 0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
           "props.text": {
             "binding": {
               "config": {
@@ -218,12 +251,25 @@
         "type": "ia.display.label"
       }
     ],
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "page": "/player/{view.custom.playerInfo.destinyid}"
+          },
+          "scope": "C",
+          "type": "nav"
+        }
+      }
+    },
     "meta": {
       "name": "root"
     },
     "props": {
       "direction": "column",
       "style": {
+        "classes": "card shadows-hover/start2hover8 utils/m-64-64-0-64",
+        "margin": "5px",
         "padding": "2.5px"
       }
     },

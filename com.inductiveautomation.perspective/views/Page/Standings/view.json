@@ -53,246 +53,989 @@
         "type": "ia.display.label"
       },
       {
+        "children": [
+          {
+            "meta": {
+              "name": "Table"
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "queryPath": "destiny/activities/getTotalActivityScore"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "position",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "center",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Place"
+                  },
+                  "justify": "center",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": false,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 75
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Score",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "left",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 100
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "clanId",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Clan Name"
+                  },
+                  "justify": "auto",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "view",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "Page/Embedded/clanLink",
+                  "visible": true,
+                  "width": ""
+                }
+              ],
+              "filter": {
+                "enabled": true
+              },
+              "rows": {
+                "subview": {
+                  "viewPath": "Page/Embedded/clanStandings"
+                }
+              },
+              "selection": {
+                "enableRowSelection": false
+              },
+              "style": {
+                "margin": "5px"
+              }
+            },
+            "type": "ia.display.table"
+          },
+          {
+            "meta": {
+              "name": "Table_0"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "queryPath": "destiny/activities/getSmallClanActivityScore"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "position",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "center",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Place"
+                  },
+                  "justify": "center",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": false,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 75
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Score",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "left",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 100
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "clanId",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Clan Name"
+                  },
+                  "justify": "auto",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "view",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "Page/Embedded/clanLink",
+                  "visible": true,
+                  "width": ""
+                }
+              ],
+              "filter": {
+                "enabled": true
+              },
+              "rows": {
+                "subview": {
+                  "viewPath": "Page/Embedded/clanStandings"
+                }
+              },
+              "selection": {
+                "enableRowSelection": false
+              },
+              "style": {
+                "margin": "5px"
+              }
+            },
+            "type": "ia.display.table"
+          },
+          {
+            "meta": {
+              "name": "Table_1"
+            },
+            "position": {
+              "tabIndex": 2
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "queryPath": "destiny/activities/getMediumClanActivityScore"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "position",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "center",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Place"
+                  },
+                  "justify": "center",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": false,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 75
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Score",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "left",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 100
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "clanId",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Clan Name"
+                  },
+                  "justify": "auto",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "view",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "Page/Embedded/clanLink",
+                  "visible": true,
+                  "width": ""
+                }
+              ],
+              "filter": {
+                "enabled": true
+              },
+              "rows": {
+                "subview": {
+                  "viewPath": "Page/Embedded/clanStandings"
+                }
+              },
+              "selection": {
+                "enableRowSelection": false
+              },
+              "style": {
+                "margin": "5px"
+              }
+            },
+            "type": "ia.display.table"
+          },
+          {
+            "meta": {
+              "name": "Table_2"
+            },
+            "position": {
+              "tabIndex": 3
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "queryPath": "destiny/activities/getLargeClanActivityScore"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "position",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "center",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Place"
+                  },
+                  "justify": "center",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": false,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 75
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Score",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "left",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 100
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "clanId",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Clan Name"
+                  },
+                  "justify": "auto",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "view",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "Page/Embedded/clanLink",
+                  "visible": true,
+                  "width": ""
+                }
+              ],
+              "filter": {
+                "enabled": true
+              },
+              "rows": {
+                "subview": {
+                  "viewPath": "Page/Embedded/clanStandings"
+                }
+              },
+              "selection": {
+                "enableRowSelection": false
+              },
+              "style": {
+                "margin": "5px"
+              }
+            },
+            "type": "ia.display.table"
+          }
+        ],
         "meta": {
-          "name": "Table"
+          "name": "TabContainer"
         },
         "position": {
           "basis": "400px",
-          "grow": 1
-        },
-        "propConfig": {
-          "props.data": {
-            "binding": {
-              "config": {
-                "queryPath": "destiny/activities/getTotalActivityScore"
-              },
-              "type": "query"
-            }
-          }
+          "grow": 1,
+          "shrink": 0
         },
         "props": {
-          "columns": [
-            {
-              "align": "center",
-              "boolean": "checkbox",
-              "dateFormat": "MM/DD/YYYY",
-              "editable": false,
-              "field": "position",
-              "footer": {
-                "align": "center",
-                "justify": "left",
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "header": {
-                "align": "center",
-                "justify": "center",
-                "style": {
-                  "classes": ""
-                },
-                "title": "Place"
-              },
-              "justify": "center",
-              "number": "value",
-              "numberFormat": "0,0.##",
-              "progressBar": {
-                "bar": {
-                  "color": "",
-                  "style": {
-                    "classes": ""
-                  }
-                },
-                "max": 100,
-                "min": 0,
-                "track": {
-                  "color": "",
-                  "style": {
-                    "classes": ""
-                  }
-                },
-                "value": {
-                  "enabled": true,
-                  "format": "0,0.##",
-                  "justify": "center",
-                  "style": {
-                    "classes": ""
-                  }
-                }
-              },
-              "render": "auto",
-              "resizable": false,
-              "sort": "none",
-              "sortable": false,
-              "strictWidth": true,
-              "style": {
-                "classes": ""
-              },
-              "toggleSwitch": {
-                "color": {
-                  "selected": "",
-                  "unselected": ""
-                }
-              },
-              "viewParams": {},
-              "viewPath": "",
-              "visible": true,
-              "width": 75
-            },
-            {
-              "align": "center",
-              "boolean": "checkbox",
-              "dateFormat": "MM/DD/YYYY",
-              "editable": false,
-              "field": "Score",
-              "footer": {
-                "align": "center",
-                "justify": "left",
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "header": {
-                "align": "center",
-                "justify": "left",
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "justify": "left",
-              "number": "value",
-              "numberFormat": "0,0.##",
-              "progressBar": {
-                "bar": {
-                  "color": "",
-                  "style": {
-                    "classes": ""
-                  }
-                },
-                "max": 100,
-                "min": 0,
-                "track": {
-                  "color": "",
-                  "style": {
-                    "classes": ""
-                  }
-                },
-                "value": {
-                  "enabled": true,
-                  "format": "0,0.##",
-                  "justify": "center",
-                  "style": {
-                    "classes": ""
-                  }
-                }
-              },
-              "render": "auto",
-              "resizable": true,
-              "sort": "none",
-              "sortable": true,
-              "strictWidth": true,
-              "style": {
-                "classes": ""
-              },
-              "toggleSwitch": {
-                "color": {
-                  "selected": "",
-                  "unselected": ""
-                }
-              },
-              "viewParams": {},
-              "viewPath": "",
-              "visible": true,
-              "width": 100
-            },
-            {
-              "align": "center",
-              "boolean": "checkbox",
-              "dateFormat": "MM/DD/YYYY",
-              "editable": false,
-              "field": "clanId",
-              "footer": {
-                "align": "center",
-                "justify": "left",
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "header": {
-                "align": "center",
-                "justify": "left",
-                "style": {
-                  "classes": ""
-                },
-                "title": "Clan Name"
-              },
-              "justify": "auto",
-              "number": "value",
-              "numberFormat": "0,0.##",
-              "progressBar": {
-                "bar": {
-                  "color": "",
-                  "style": {
-                    "classes": ""
-                  }
-                },
-                "max": 100,
-                "min": 0,
-                "track": {
-                  "color": "",
-                  "style": {
-                    "classes": ""
-                  }
-                },
-                "value": {
-                  "enabled": true,
-                  "format": "0,0.##",
-                  "justify": "center",
-                  "style": {
-                    "classes": ""
-                  }
-                }
-              },
-              "render": "view",
-              "resizable": true,
-              "sort": "none",
-              "sortable": true,
-              "strictWidth": false,
-              "style": {
-                "classes": ""
-              },
-              "toggleSwitch": {
-                "color": {
-                  "selected": "",
-                  "unselected": ""
-                }
-              },
-              "viewParams": {},
-              "viewPath": "Page/Embedded/clanLink",
-              "visible": true,
-              "width": ""
-            }
-          ],
-          "filter": {
-            "enabled": true
+          "tabSize": {
+            "width": 125
           },
-          "rows": {
-            "subview": {
-              "viewPath": "Page/Embedded/clanStandings"
-            }
-          },
-          "selection": {
-            "enableRowSelection": false
-          },
-          "style": {
-            "margin": "5px"
-          }
+          "tabs": [
+            "All Clans",
+            "Small (Under 25)",
+            "Medium (25-65)",
+            "Large (65+)"
+          ]
         },
-        "type": "ia.display.table"
+        "type": "ia.container.tab"
       }
     ],
     "meta": {

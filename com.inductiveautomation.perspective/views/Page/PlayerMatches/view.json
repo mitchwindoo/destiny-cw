@@ -3,7 +3,7 @@
     "playerInfo": null
   },
   "params": {
-    "playerId": ""
+    "playerId": "4611686018429553000"
   },
   "propConfig": {
     "custom.playerInfo": {
@@ -69,21 +69,127 @@
         "type": "ia.display.view"
       },
       {
+        "children": [
+          {
+            "meta": {
+              "name": "playerAward"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.playerId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.playerId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardName": "Total Games Played",
+                "namedQuery": "destiny/activities/awardsPlayerGameCount"
+              },
+              "path": "Page/Embedded/playerAward"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "playerAward_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.playerId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.playerId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardName": "Top Single Game Score",
+                "namedQuery": "destiny/activities/awardsPlayerHighestSingleGameScore"
+              },
+              "path": "Page/Embedded/playerAward"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "playerAward_1"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.playerId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.playerId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardName": "Average Game Score",
+                "namedQuery": "destiny/activities/awardsPlayerAvgScore"
+              },
+              "path": "Page/Embedded/playerAward"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "playerAward_2"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.playerId": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.playerId"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardName": "Average Game K/D",
+                "namedQuery": "destiny/activities/awardsPlayerKD"
+              },
+              "path": "Page/Embedded/playerAward"
+            },
+            "type": "ia.display.view"
+          }
+        ],
         "meta": {
-          "hasDelegate": true,
-          "name": "Description"
+          "name": "FlexContainer"
         },
         "position": {
           "shrink": 0
         },
         "props": {
+          "alignContent": "flex-start",
+          "justify": "space-around",
           "style": {
-            "classes": "Page/Text Page/Margins",
-            "padding": "10px"
+            "margin": "5px"
           },
-          "text": "Let\u0027s start simple, scoring will reset on the weekly reset and be archived into the previous week. Right now I am only tracking matches that Bungie tags for Iron Banner. \nThe SCORE calculation is \"({kills} x {k/d ratio}) x 100\""
+          "wrap": "wrap"
         },
-        "type": "ia.display.label"
+        "type": "ia.container.flex"
       },
       {
         "meta": {
@@ -91,7 +197,8 @@
         },
         "position": {
           "basis": "400px",
-          "grow": 1
+          "grow": 1,
+          "shrink": 0
         },
         "propConfig": {
           "props.data": {

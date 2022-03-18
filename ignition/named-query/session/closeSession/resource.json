@@ -1,0 +1,40 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "3c90ea4229d566d45eeabbcb1746d876cdf866b0e05507f5b48a3420666cc6f3",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-03-17T05:18:36Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "id",
+        "sqlType": 7
+      }
+    ]
+  }
+}

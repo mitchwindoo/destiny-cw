@@ -78,24 +78,6 @@
         "type": "ia.display.view"
       },
       {
-        "meta": {
-          "name": "Label"
-        },
-        "position": {
-          "basis": "32px"
-        },
-        "props": {
-          "alignVertical": "bottom",
-          "style": {
-            "fontFamily": "Arial",
-            "fontWeight": "bold",
-            "marginLeft": "10px"
-          },
-          "text": "Clan Awards"
-        },
-        "type": "ia.display.label"
-      },
-      {
         "children": [
           {
             "meta": {
@@ -116,11 +98,14 @@
             },
             "props": {
               "params": {
-                "awardDesc": "Awarded to the player with the Most games played",
+                "awardDesc": "Most games played",
                 "awardName": "MVP",
                 "namedQuery": "destiny/activities/awardsClanMostGames"
               },
               "path": "Page/Embedded/clanAward",
+              "style": {
+                "overflow": "visible"
+              },
               "useDefaultViewWidth": true
             },
             "type": "ia.display.view"
@@ -144,11 +129,14 @@
             },
             "props": {
               "params": {
-                "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
+                "awardDesc": "Highest average score",
                 "awardName": "Top AVG Score",
                 "namedQuery": "destiny/activities/awardsClanHighestAvgScore"
               },
               "path": "Page/Embedded/clanAward",
+              "style": {
+                "overflow": "visible"
+              },
               "useDefaultViewWidth": true
             },
             "type": "ia.display.view"
@@ -172,11 +160,14 @@
             },
             "props": {
               "params": {
-                "awardDesc": "Awarded to the player with the Highest score in a single game *Minimum 10 games played*",
-                "awardName": "Top Single Game Score",
+                "awardDesc": "Highest score in a single game",
+                "awardName": "Top Game Score",
                 "namedQuery": "destiny/activities/awardsClanHighestSingleGameScore"
               },
               "path": "Page/Embedded/clanAward",
+              "style": {
+                "overflow": "visible"
+              },
               "useDefaultViewWidth": true
             },
             "type": "ia.display.view"
@@ -200,27 +191,14 @@
             },
             "props": {
               "params": {
-                "awardDesc": "Awarded to the player with the Kill/Death Ratio *Minimum 10 games played*",
+                "awardDesc": "Highest AVG Kill/Death Ratio",
                 "awardName": "Top K/D",
                 "namedQuery": "destiny/activities/awardsClanHighestKD"
               },
               "path": "Page/Embedded/clanAward",
-              "useDefaultViewWidth": true
-            },
-            "type": "ia.display.view"
-          },
-          {
-            "meta": {
-              "name": "spicyGrinders"
-            },
-            "position": {
-              "shrink": 0
-            },
-            "props": {
-              "params": {
-                "clanId": 1163459
+              "style": {
+                "overflow": "visible"
               },
-              "path": "Page/Embedded/spicyGrinders",
               "useDefaultViewWidth": true
             },
             "type": "ia.display.view"
@@ -230,13 +208,14 @@
           "name": "FlexContainer"
         },
         "position": {
-          "basis": "200px"
+          "shrink": 0
         },
         "props": {
           "alignContent": "flex-start",
           "justify": "space-around",
           "style": {
-            "margin": "5px"
+            "margin": "5px",
+            "overflow": "visible"
           },
           "wrap": "wrap"
         },
@@ -248,7 +227,8 @@
         },
         "position": {
           "basis": "400px",
-          "grow": 1
+          "grow": 1,
+          "shrink": 0
         },
         "propConfig": {
           "props.data": {

@@ -1,0 +1,195 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.activeTab": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tself.session.custom.tabIndex \u003d currentValue"
+      },
+      "paramDirection": "output",
+      "persistent": false
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 612,
+      "width": 1500
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "50px",
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "color": "var(--neutral-70)",
+                "fontSize": "14px",
+                "marginRight": "8px",
+                "textAlign": "right"
+              },
+              "text": "Select a theme"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Dropdown"
+            },
+            "position": {
+              "basis": "180px"
+            },
+            "propConfig": {
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "session.props.theme"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "options": [
+                {
+                  "label": "light",
+                  "value": "light"
+                },
+                {
+                  "label": "light-cool",
+                  "value": "light-cool"
+                },
+                {
+                  "label": "light-warm",
+                  "value": "light-warm"
+                },
+                {
+                  "label": "dark",
+                  "value": "dark"
+                },
+                {
+                  "label": "dark-cool",
+                  "value": "dark-cool"
+                },
+                {
+                  "label": "dark-warm",
+                  "value": "dark-warm"
+                }
+              ]
+            },
+            "type": "ia.input.dropdown"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "flex-end",
+          "style": {
+            "padding": "8px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "page-depths"
+            },
+            "props": {
+              "path": "pages/depths"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "page-hovers"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "props": {
+              "path": "pages/hovers/hovers"
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "TabContainer"
+        },
+        "position": {
+          "basis": "800px",
+          "grow": 1
+        },
+        "props": {
+          "menuStyle": {
+            "backgroundColor": "var(--neutral-30)",
+            "borderTop": "1px solid var(--neutral-50)"
+          },
+          "tabSize": {
+            "height": 64,
+            "width": 400
+          },
+          "tabStyle": {
+            "active": {
+              "backgroundColor": "var(--neutral-30)",
+              "borderBottom": "3px solid var(--callToAction)",
+              "color": "var(--neutral-100)",
+              "fontWeight": "500"
+            },
+            "inactive": {
+              "backgroundColor": "var(--neutral-30)",
+              "borderBottom": "1px solid var(--neutral-50)",
+              "color": "var(--neutral-60)"
+            }
+          },
+          "tabs": [
+            {
+              "viewParams": {
+                "icon": "layers",
+                "index": 0,
+                "label": "Shadow Depths"
+              },
+              "viewPath": "components/nav-item"
+            },
+            {
+              "viewParams": {
+                "icon": "mouse",
+                "index": 1,
+                "label": "Hover Examples"
+              },
+              "viewPath": "components/nav-item"
+            }
+          ]
+        },
+        "type": "ia.container.tab"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "center",
+      "direction": "column",
+      "justify": "center",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

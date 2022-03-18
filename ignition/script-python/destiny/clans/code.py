@@ -39,7 +39,7 @@ def getPlayers(clanId):
 					}
 				queryPath = 'destiny/clans/addPlayers'
 				system.db.runNamedQuery(queryPath, queryParams)
-				logger.info("Added " + str(player['destinyUserInfo']['displayName']) + " To Player Database")
+				logger.debug("Added " + str(player['destinyUserInfo']['displayName']) + " To Player Database")
 			except:
 				logger.error("Unable to Locate Player Account for ID " + player['destinyUserInfo']['membershipId'])
 				pass
@@ -70,3 +70,4 @@ def addClan(clanId):
 	queryParams = {'clanId':clanId,'clanName':clanName,'clanFounder':clanFounder,'clanFounderBungieId':clanFounderBungieId,'clanFounderDestinyId':clanFounderDestinyId,'clanAbout':clanAbout,'clanMembers':clanMembers,'clanMotto':clanMotto}
 	queryPath = 'destiny/clans/addClan'
 	system.db.runNamedQuery(queryPath, queryParams)
+	getPlayers(clanId)

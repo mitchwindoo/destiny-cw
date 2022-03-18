@@ -1,0 +1,21 @@
+{
+  "base": {
+    "style": {}
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "animation": {
+        "duration": "0.25s",
+        "iterationCount": "1",
+        "timingFunction": "ease-out",
+        "keyframes": {
+          "0%": {},
+          "100%": {
+            "backgroundColor": "var(--callToActionHighlight)"
+          }
+        }
+      }
+    }
+  ]
+}

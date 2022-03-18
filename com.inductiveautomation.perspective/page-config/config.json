@@ -2,23 +2,22 @@
   "pages": {
     "/player/:playerId": {
       "viewPath": "Page/PlayerMatches",
-      "title": "Player Scores"
+      "title": ""
     },
     "/individual": {
       "viewPath": "Page/Individual",
-      "title": "Individual Scores"
+      "title": ""
     },
     "/clan/:clanId": {
       "viewPath": "Page/ClanIndividual",
-      "title": "Clan Scores"
+      "title": ""
     },
     "/standings": {
       "viewPath": "Page/Standings",
-      "title": "Clan Scores"
+      "title": ""
     },
     "/": {
-      "viewPath": "Page/Home",
-      "title": "Welcome"
+      "viewPath": "Page/Home"
     }
   },
   "sharedDocks": {
@@ -35,7 +34,7 @@
         "show": "onDemand",
         "anchor": "fixed",
         "content": "cover",
-        "autoBreakpoint": 768,
+        "autoBreakpoint": 480,
         "handle": "hide"
       }
     ],
@@ -45,8 +44,8 @@
         "id": "",
         "viewParams": {
           "path": "Header/Header",
-          "breakpointLarge": "820",
-          "breakpointMedium": "710",
+          "breakpointLarge": 820,
+          "breakpointMedium": 710,
           "params": {}
         },
         "size": 58,
