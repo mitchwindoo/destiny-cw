@@ -268,7 +268,7 @@
               "render": "date",
               "resizable": true,
               "sort": "none",
-              "sortable": false,
+              "sortable": true,
               "strictWidth": false,
               "style": {
                 "classes": ""
@@ -336,7 +336,7 @@
               "render": "auto",
               "resizable": true,
               "sort": "none",
-              "sortable": false,
+              "sortable": true,
               "strictWidth": false,
               "style": {
                 "classes": ""
@@ -404,7 +404,7 @@
               "render": "auto",
               "resizable": true,
               "sort": "none",
-              "sortable": false,
+              "sortable": true,
               "strictWidth": false,
               "style": {
                 "classes": ""
@@ -472,7 +472,7 @@
               "render": "auto",
               "resizable": true,
               "sort": "none",
-              "sortable": false,
+              "sortable": true,
               "strictWidth": false,
               "style": {
                 "classes": ""
@@ -540,7 +540,7 @@
               "render": "auto",
               "resizable": true,
               "sort": "none",
-              "sortable": false,
+              "sortable": true,
               "strictWidth": false,
               "style": {
                 "classes": ""
@@ -608,7 +608,75 @@
               "render": "auto",
               "resizable": true,
               "sort": "none",
-              "sortable": false,
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "score",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Score"
+              },
+              "justify": "auto",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": true,
               "strictWidth": false,
               "style": {
                 "classes": ""

@@ -10,23 +10,23 @@ header = {"X-API-Key":apiKey}
 logger = system.util.getLogger("bungieAPI")
 
 # Placeholder with the standard return format for Bungie API calls
-def bungieApiCall()
+def bungieApiCall():
 	# Builds the API URL with the base and the actual API path
 	apiUrl = apiRoot + "/Destiny2/1/Profile/4611686018432886684/"
 	# Performs the HTTP Get using the httpClient set in the Global Props
 	apiCall = api.get(url=apiUrl,headers=header)
-	# Response dict standard in Bungie API Calls, returned in a json format.
-	Response = apiCall.json['Response']
-	# Error Code standard in Bungie API Calls, returned in a json format.
-	ErrorCode = int(apiCall.json['ErrorCode'])
-	# Throttle Seconds standard in Bungie API Calls, returned in a json format.
-	ThrottleSeconds = int(apiCall.json['ThrottleSeconds'])
-	# Error Status standard in Bungie API Calls, returned in a json format.
-	ErrorStatus = str(apiCall.json['ErrorStatus'])
-	# Message Status standard in Bungie API Calls, returned in a json format.
-	Message = apiCall.json['Message']
 	# Checks if the response to the httpGet request returned a 200 (Good) value
 	if apiCall.good:
+		# Response dict standard in Bungie API Calls, returned in a json format.
+		Response = apiCall.json['Response']
+		# Error Code standard in Bungie API Calls, returned in a json format.
+		ErrorCode = int(apiCall.json['ErrorCode'])
+		# Throttle Seconds standard in Bungie API Calls, returned in a json format.
+		ThrottleSeconds = int(apiCall.json['ThrottleSeconds'])
+		# Error Status standard in Bungie API Calls, returned in a json format.
+		ErrorStatus = str(apiCall.json['ErrorStatus'])
+		# Message Status standard in Bungie API Calls, returned in a json format.
+		Message = apiCall.json['Message']
 		# Do something if the API Call is successful
 		logger.debug("apiCall " + str(apiCall.url) + " Succeeded, status code: " + str(apiCall.statusCode))
 		print "apiCall " + str(apiCall.url) + " Succeeded, status code: " + str(apiCall.statusCode)
@@ -52,32 +52,25 @@ def getPostGameCarnageReport(activityId,destinyMembershipId):
 		Response = apiCall.json['Response']
 		for entry in Response['entries']:
 			if entry['player']['destinyUserInfo']['membershipId'] == destinyMembershipId:
-				precisionKills = int(entry['extended']['values']['precisionKills']['basic']['value'])
-				weaponKillsGrenade = int(entry['extended']['values']['weaponKillsGrenade']['basic']['value'])
-				weaponKillsMelee = int(entry['extended']['values']['allMedalsEarned']['basic']['value'])
-				weaponKillsSuper = int(entry['extended']['values']['allMedalsEarned']['basic']['value'])
-				weaponKillsAbility = int(entry['extended']['values']['allMedalsEarned']['basic']['value'])
-				weapons = entry['extended']['weapons']
+				try:
+					pgcr_extended = entry['extended']
+				except:
+					pgcr_extended = {}
 				logger.debug("getPostGameCarnageReport for activity " + activityId + " Completed")
-				return {'kills_precision':precisionKills,
-					'kills_grenade':weaponKillsGrenade,
-					'kills_melee':weaponKillsMelee,
-					'kills_super':weaponKillsSuper,
-					'kills_ability':weaponKillsAbility,
-					'weapons':{'weapons':weapons}}
+				return {'pgcr_extended':pgcr_extended}
 	else:
 		logger.error("apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode))
 		print "apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode)
 
-def ironBanner(membershipType,destinyMembershipId,characterId):
-	apiUrl = apiRoot + "/Destiny2/" + str(membershipType) + "/Account/" + str(destinyMembershipId) + "/Character/" + str(characterId) + "/Stats/Activities/?mode=19"
+def ironBanner(membershipType,destinyMembershipId,characterId,queryString="?mode=19&count=5"):
+	apiUrl = apiRoot + "/Destiny2/" + str(membershipType) + "/Account/" + str(destinyMembershipId) + "/Character/" + str(characterId) + "/Stats/Activities/" + queryString
 	apiCall = api.get(url=apiUrl,headers=header)
-	Response = apiCall.json['Response']
-	ErrorCode = int(apiCall.json['ErrorCode'])
-	ThrottleSeconds = int(apiCall.json['ThrottleSeconds'])
-	ErrorStatus = str(apiCall.json['ErrorStatus'])
-	Message = apiCall.json['Message']
 	if apiCall.good:
+		Response = apiCall.json['Response']
+		ErrorCode = int(apiCall.json['ErrorCode'])
+		ThrottleSeconds = int(apiCall.json['ThrottleSeconds'])
+		ErrorStatus = str(apiCall.json['ErrorStatus'])
+		Message = apiCall.json['Message']
 		## Debug
 		#print json.dumps(apiCall, indent=4, sort_keys=True)
 		#system.db.runNamedQuery("destiny/activities/deleteAllActivities", {})
@@ -132,12 +125,7 @@ def ironBanner(membershipType,destinyMembershipId,characterId):
 							'team':activity['values']['team']['basic']['value'],
 							'teamscore':activity['values']['teamScore']['basic']['value'],
 							'timeplayed':activity['values']['timePlayedSeconds']['basic']['displayValue'],
-							'kills_precision':pgcr['kills_precision'],
-							'kills_grenade':pgcr['kills_grenade'],
-							'kills_melee':pgcr['kills_melee'],
-							'kills_super':pgcr['kills_super'],
-							'kills_ability':pgcr['kills_ability'],
-							'weapons':json.dumps(pgcr['weapons'])}
+							'pgcr_extended':json.dumps(pgcr['pgcr_extended'])}
 						#print queryParams
 						queryPath = 'destiny/activities/addActivity'
 						system.db.runNamedQuery(queryPath, queryParams)
@@ -149,7 +137,7 @@ def ironBanner(membershipType,destinyMembershipId,characterId):
 					logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " Has already been logged to the database")
 			else:
 				print "No Response in apiCall, ErrorCode: " + str(ErrorCode) + ", ThrottleSeconds: " + str(ThrottleSeconds) + ", ErrorStatus: " + str(ErrorStatus) + ", Message: " + str(Message)
-				logger.error("No Response in apiCall, ErrorCode: " + str(ErrorCode) + ", ThrottleSeconds: " + str(ThrottleSeconds) + ", ErrorStatus: " + str(ErrorStatus) + ", Message: " + str(Message))
+				logger.debug("No Response in apiCall " + str(apiCall.url) + ", ErrorCode: " + str(ErrorCode) + ", ThrottleSeconds: " + str(ThrottleSeconds) + ", ErrorStatus: " + str(ErrorStatus) + ", Message: " + str(Message))
 				
 	else:
 		logger.error("apiCall " + str(apiCall.url) + "  Failed, status code: " + str(apiCall.statusCode))
@@ -165,7 +153,25 @@ def syncIronBanner():
 	for player in playerList:
 		characters = json.loads(player['characterids'])
 		for i in characters:
-			ironBanner(player['membershiptype'],player['destinyid'],i)
+			ironBanner(player['membershiptype'],player['destinyid'],i,"?mode=19&count=5")
 	executionTime = (time.time() - startTime)
+	system.db.runNamedQuery("api/scriptLogs", {"script":"syncIronBanner","script_runtime":executionTime})
 	print "syncIronBanner Script completed in " + str(executionTime) + " seconds"
 	logger.info("syncIronBanner Script completed in " + str(executionTime) + " seconds")
+
+def resetIronBanner():
+	startTime = time.time()
+	system.db.runNamedQuery('destiny/activities/deleteAllActivities', {})
+	queryParams = {}
+	#print queryParams
+	queryPath = 'destiny/clans/getAllPlayers'
+	playerList = system.dataset.toPyDataSet(system.db.runNamedQuery(queryPath, queryParams))
+	
+	for player in playerList:
+		characters = json.loads(player['characterids'])
+		for i in characters:
+			ironBanner(player['membershiptype'],player['destinyid'],i,"?mode=19")
+	executionTime = (time.time() - startTime)
+	system.db.runNamedQuery("api/scriptLogs", {"script":"syncIronBanner","script_runtime":executionTime})
+	print "resetIronBanner Script completed in " + str(executionTime) + " seconds"
+	logger.info("resetIronBanner Script completed in " + str(executionTime) + " seconds")

@@ -73,9 +73,9 @@
               "items": [],
               "label": {
                 "icon": {
-                  "path": "material/home"
+                  "path": "material/info"
                 },
-                "text": "Home"
+                "text": "About"
               },
               "navIcon": {},
               "showHeader": false,

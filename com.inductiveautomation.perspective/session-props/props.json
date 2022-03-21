@@ -51,10 +51,9 @@
     }
   },
   "props": {
-    "address": "184.155.215.99",
+    "address": "24.119.10.82",
     "device": {},
     "geolocation": {},
-    "locale": "en-US",
-    "theme": "dark"
+    "locale": "en-US"
   }
 }

@@ -1,0 +1,220 @@
+{
+  "custom": {
+    "leaderboard": {
+      "clanId": 4125823
+    }
+  },
+  "params": {
+    "awardDesc": "",
+    "awardName": "Highest Overall Score",
+    "namedQuery": "destiny/activities/getTotalActivityScore"
+  },
+  "propConfig": {
+    "custom.leaderboard": {
+      "binding": {
+        "config": {
+          "struct": {
+            "namedQuery": "{view.params.namedQuery}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tquery \u003d system.dataset.toPyDataSet(system.db.runNamedQuery(value[\u0027namedQuery\u0027],{}))\n\tclanId \u003d query[0][\u0027clanid\u0027]\n\t\t\n\treturn {\u0027clanId\u0027:clanId}\n\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "params.awardDesc": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.awardName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.namedQuery": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 150,
+      "width": 150
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.leaderboard}) \u003e 0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.awardName"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--success",
+            "fontFamily": "Arial",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "margin": "2.5px",
+            "textAlign": "center",
+            "textTransform": "uppercase"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.leaderboard}) \u003e 0 \u0026\u0026 len({view.params.awardDesc}) \u003e 0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.awardDesc"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "alignVertical": "top",
+          "style": {
+            "color": "--div-13",
+            "fontFamily": "Arial",
+            "fontSize": "10px",
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "margin": "2.5px",
+            "textAlign": "center",
+            "textTransform": "capitalize"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "page": "/clan/{view.custom.leaderboard.clanId}"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label_1"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.leaderboard}) \u003e 0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "clanid": "{view.custom.leaderboard.clanId}"
+                },
+                "queryPath": "destiny/clans/getClanInfo",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn value[0][\u0027name\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--info",
+            "cursor": "pointer",
+            "fontFamily": "Arial",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "margin": "2.5px",
+            "textAlign": "center",
+            "textDecoration": "underline",
+            "textTransform": "uppercase"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "page": "/clan/{view.custom.leaderboard.clanId}"
+          },
+          "scope": "C",
+          "type": "nav"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "card shadows-hover/start2hover8 utils/m-64-64-0-64",
+        "margin": "5px",
+        "padding": "2.5px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

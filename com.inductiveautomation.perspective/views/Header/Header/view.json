@@ -75,20 +75,6 @@
         "type": "ia.display.icon"
       },
       {
-        "meta": {
-          "hasDelegate": true,
-          "name": "Spacer End_2"
-        },
-        "position": {
-          "basis": "10px",
-          "shrink": 0
-        },
-        "props": {
-          "text": " "
-        },
-        "type": "ia.display.label"
-      },
-      {
         "events": {
           "dom": {
             "onClick": {
@@ -104,7 +90,7 @@
           "name": "Image"
         },
         "position": {
-          "basis": "50px"
+          "basis": "35px"
         },
         "props": {
           "fit": {
@@ -112,9 +98,11 @@
             "mode": "contain",
             "width": 40
           },
-          "source": "https://www.pinclipart.com/picdir/big/150-1506852_destiny-clipart-destiny-game-destiny-symbols-png-download.png",
+          "source": "https://www.freepnglogos.com/uploads/destiny-logo-png/image-destiny-logo-white-rwby-fanon-wiki-fandom-5.png",
           "style": {
-            "cursor": "pointer"
+            "align-self": "center",
+            "cursor": "pointer",
+            "height": "35px"
           }
         },
         "type": "ia.display.image"
@@ -218,6 +206,71 @@
           "text": " "
         },
         "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Dropdown"
+        },
+        "position": {
+          "basis": "125px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.props.theme"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "dropdownOptionStyle": {
+            "fontFamily": "Arial",
+            "fontSize": "12px"
+          },
+          "options": [
+            {
+              "label": "Dark Mode",
+              "value": "dark"
+            },
+            {
+              "label": "Dark Mode (Warm)",
+              "value": "dark-warm"
+            },
+            {
+              "label": "Dark Mode (Cool)",
+              "value": "dark-cool"
+            },
+            {
+              "label": "Light Mode",
+              "value": "light"
+            },
+            {
+              "label": "Light Mode (Warm)",
+              "value": "light-warm"
+            },
+            {
+              "label": "Light Mode (Cool)",
+              "value": "light-cool"
+            }
+          ],
+          "placeholder": {
+            "text": "Theme"
+          },
+          "search": {
+            "enabled": false
+          },
+          "style": {
+            "align-self": "center",
+            "fontFamily": "Arial",
+            "fontSize": "12px",
+            "height": "30px"
+          }
+        },
+        "type": "ia.input.dropdown"
       },
       {
         "meta": {

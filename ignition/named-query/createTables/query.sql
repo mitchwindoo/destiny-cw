@@ -12,7 +12,7 @@
  Target Server Version : 120009
  File Encoding         : 65001
 
- Date: 15/03/2022 10:19:49
+ Date: 20/03/2022 02:43:34
 */
 
 
@@ -46,45 +46,16 @@ CREATE TABLE "public"."activities" (
   "team" int4 NOT NULL,
   "teamscore" int4 NOT NULL,
   "timeplayed" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "playercharacterid" int8 NOT NULL
+  "playercharacterid" int8 NOT NULL,
+  "kills_precision" int4,
+  "kills_grenade" int4,
+  "kills_melee" int4,
+  "kills_super" int4,
+  "kills_ability" int4,
+  "weapons" jsonb
 )
 ;
 ALTER TABLE "public"."activities" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for activities_archive
--- ----------------------------
-DROP TABLE IF EXISTS "public"."activities_archive";
-CREATE TABLE "public"."activities_archive" (
-  "playerdestinyid" int8 NOT NULL,
-  "instanceid" int8 NOT NULL,
-  "modes" jsonb NOT NULL,
-  "mode" int2 NOT NULL,
-  "isprivate" bool NOT NULL,
-  "referenceid" int8 NOT NULL,
-  "timestamp" timestamptz(6) NOT NULL,
-  "activityduration" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "assists" int4 NOT NULL,
-  "avgscoreperkill" float4 NOT NULL,
-  "avgscoreperlife" float4 NOT NULL,
-  "completed" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "completionreason" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "deaths" float4 NOT NULL,
-  "efficiency" float4 NOT NULL,
-  "fireteamid" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "kills" int4 NOT NULL,
-  "killsdeathsassists" float4 NOT NULL,
-  "killsdeathsratio" float4 NOT NULL,
-  "opponentsdefeated" int4 NOT NULL,
-  "score" int4 NOT NULL,
-  "standing" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "team" int4 NOT NULL,
-  "teamscore" int4 NOT NULL,
-  "timeplayed" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "playercharacterid" int8 NOT NULL
-)
-;
-ALTER TABLE "public"."activities_archive" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for api_keys
@@ -126,6 +97,34 @@ CREATE TABLE "public"."players" (
 )
 ;
 ALTER TABLE "public"."players" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for script_logs
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."script_logs";
+CREATE TABLE "public"."script_logs" (
+  "script" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "script_runtime" float4 NOT NULL,
+  "script_timestamp" timestamptz(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+;
+ALTER TABLE "public"."script_logs" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for sessions
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."sessions";
+CREATE TABLE "public"."sessions" (
+  "id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "start_time" timestamptz(6) NOT NULL,
+  "end_time" timestamptz(6),
+  "device_ip" varchar(255) COLLATE "pg_catalog"."default",
+  "timezone" varchar(255) COLLATE "pg_catalog"."default",
+  "device_useragent" text COLLATE "pg_catalog"."default",
+  "device_id" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "public"."sessions" OWNER TO "postgres";
 
 -- ----------------------------
 -- Primary Key structure for table api_keys
