@@ -202,8 +202,13 @@
           "grow": 1
         },
         "props": {
-          "source": "## Welcome to Destiny 2 Clan Wars\n#\n---\n#\nThank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. I hope to change that by publishing all of my application code to GitHub. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. If you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon or buy me a coffee.  100% of your funds go to server costs and improvements. \n#\n---\n#\n## How To Join\nJoin our discord using the button below or follow this link: https://discord.gg/gchx7SMEh9, Then you can post a message in the clan-applications channel with your clan link from Bungie.net\n#\nAlternatively, Send me a direct message on Discord with your Clan link from Bungie.net.\nDiscord Username: **MitchWindoo#4216**\n#\n---\n#\n## Financial Disclosure\n**Linode Server: $120/year**\n#\n**SSL Certificate: $52/year**\n#\n**Domain Name: $13/year**",
+          "source": "## Welcome to Destiny 2 Clan Wars\n#\n---\n#\nThank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. I hope to change that by publishing all of my application code to GitHub. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. If you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon (https://www.patreon.com/mitchwindoo) or Buy Me A Coffee (https://www.buymeacoffee.com/d2clanwars).  100% of your funds go to server costs and improvements. \n#\nDestiny 2 Clan Wars is built using Ignition Maker Edition by Inductive Automation, learn more here: https://inductiveautomation.com/ignition/maker-edition\n#\n---\n#\n## How To Join\nJoin our discord using the button below or follow this link: https://discord.gg/gchx7SMEh9, Then you can post a message in the clan-applications channel with your clan link from Bungie.net\n#\n---\n#\n## Financial Disclosure\n**Linode Server: $120/year**\n#\n**SSL Certificate: $52/year**\n#\n**Domain Name: $13/year**",
           "style": {
+            "borderBottomStyle": "none",
+            "borderLeftStyle": "none",
+            "borderRightStyle": "none",
+            "borderTopStyle": "solid",
+            "borderTopWidth": "0.2px",
             "padding": "20px"
           }
         },
@@ -242,6 +247,40 @@
                 "margin": "2.5px"
               },
               "text": "Patreon"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "newTab": true,
+                    "url": "https://www.buymeacoffee.com/d2clanwars"
+                  },
+                  "scope": "C",
+                  "type": "nav"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button_0"
+            },
+            "position": {
+              "basis": "120px",
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/monetization_on"
+                }
+              },
+              "style": {
+                "height": "46px",
+                "margin": "2.5px"
+              },
+              "text": "Donate"
             },
             "type": "ia.input.button"
           },
@@ -322,6 +361,7 @@
         },
         "props": {
           "alignItems": "flex-start",
+          "justify": "space-evenly",
           "style": {
             "padding": "2.5px"
           },

@@ -5,7 +5,7 @@ import time
 apiKey = system.db.runNamedQuery("api/getApiKey", {})
 apiRoot = "https://www.bungie.net/Platform"
 header = {"X-API-Key":apiKey}
-logger = system.util.getLogger("bungieAPI")
+logger = system.util.getLogger("clans")
 
 def getPlayers(clanId):
 	startTime = time.time()

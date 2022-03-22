@@ -12,13 +12,14 @@
     "fallbackValue": "",
     "maxReturnSize": 100,
     "cacheUnit": "SEC",
-    "type": "Query",
+    "description": "This named query performs daily maintenance on the tables in the database designed to hold logs so that the tables don\u0027t get to large. ",
+    "type": "UpdateQuery",
     "enabled": true,
     "cacheAmount": 1,
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "3b32106bed0f466b8f0e143c4e2ad1b5cc83c7f82cfd2d21dbd23b2f499bfaf1",
+    "lastModificationSignature": "6ccba55aede91c08e0089a604a9d08ec8dd339d92bea3bed3e49c8520c5bb095",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +28,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-21T23:46:04Z"
+      "timestamp": "2022-03-22T17:03:52Z"
     }
   }
 }

@@ -7,7 +7,7 @@ api = system.net.httpClient(redirect_policy="ALWAYS")
 apiKey = system.db.runNamedQuery("api/getApiKey", {})
 apiRoot = "https://www.bungie.net/Platform"
 header = {"X-API-Key":apiKey}
-logger = system.util.getLogger("bungieAPI")
+logger = system.util.getLogger("activities")
 
 # Placeholder with the standard return format for Bungie API calls
 def bungieApiCall():
@@ -60,9 +60,9 @@ def getPostGameCarnageReport(activityId,destinyMembershipId):
 				return {'pgcr_extended':pgcr_extended}
 	else:
 		logger.error("apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode))
-		print "apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode)
+		#print "apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode)
 
-def ironBanner(membershipType,destinyMembershipId,characterId,queryString="?mode=19&count=5"):
+def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 	apiUrl = apiRoot + "/Destiny2/" + str(membershipType) + "/Account/" + str(destinyMembershipId) + "/Character/" + str(characterId) + "/Stats/Activities/" + queryString
 	apiCall = api.get(url=apiUrl,headers=header)
 	if apiCall.good:
@@ -86,18 +86,22 @@ def ironBanner(membershipType,destinyMembershipId,characterId,queryString="?mode
 				queryPath = 'destiny/activities/activityExists'
 				activityExists = system.db.runNamedQuery(queryPath, queryParams)
 				logger.debug("ironBanner: activityExists results for Activity ID " + str(activity['activityDetails']['instanceId']) + ": " + str(activityExists))
-				print "ironBanner: activityExists results for Activity ID " + str(activity['activityDetails']['instanceId']) + ": " + str(activityExists)
+				#print "ironBanner: activityExists results for Activity ID " + str(activity['activityDetails']['instanceId']) + ": " + str(activityExists)
 				if activityExists == False:
-					print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " does not exist in database"
+					#print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " does not exist in database"
 					logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " does not exist in database")
 					timestamp = datetime.strptime(activity['period'], '%Y-%m-%dT%H:%M:%SZ')
 					#print type(timestamp)
 					# Check if the activity in the returned data is in the current year, keeps the old data from re-populating
-					dataCurrent = system.date.isAfter(system.date.parse(timestamp), system.date.addMonths(system.date.now(), -3))
+					dataCurrent = system.date.isAfter(system.date.parse(timestamp), system.date.addWeeks(system.date.now(), -1))
 					if dataCurrent == True:
-						print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " data is being added to the database"
+						#print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " data is being added to the database"
 						logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " data is being added to the database")
-						pgcr = getPostGameCarnageReport(str(activity['activityDetails']['instanceId']),str(destinyMembershipId))
+						try: 
+							pgcr = getPostGameCarnageReport(str(activity['activityDetails']['instanceId']),str(destinyMembershipId))
+						except:
+							logger.error("Failed to get PGCR on " + str(activity['activityDetails']['instanceId']) + ", PlayerId: " + str(destinyMembershipId))
+							pgcr = {'pgcr_extended':{}}
 						# Write Values to the Database
 						queryParams = {'playercharacterid':str(characterId),
 							'playerdestinyid':str(destinyMembershipId),
@@ -130,48 +134,15 @@ def ironBanner(membershipType,destinyMembershipId,characterId,queryString="?mode
 						queryPath = 'destiny/activities/addActivity'
 						system.db.runNamedQuery(queryPath, queryParams)
 					else:
-						print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " being skipped due to age"
+						#print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " being skipped due to age"
 						logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " being skipped due to age")
 				else:
-					print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " Has already been logged to the database"
+					#print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " Has already been logged to the database"
 					logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " Has already been logged to the database")
 			else:
-				print "No Response in apiCall, ErrorCode: " + str(ErrorCode) + ", ThrottleSeconds: " + str(ThrottleSeconds) + ", ErrorStatus: " + str(ErrorStatus) + ", Message: " + str(Message)
+				#print "No Response in apiCall, ErrorCode: " + str(ErrorCode) + ", ThrottleSeconds: " + str(ThrottleSeconds) + ", ErrorStatus: " + str(ErrorStatus) + ", Message: " + str(Message)
 				logger.debug("No Response in apiCall " + str(apiCall.url) + ", ErrorCode: " + str(ErrorCode) + ", ThrottleSeconds: " + str(ThrottleSeconds) + ", ErrorStatus: " + str(ErrorStatus) + ", Message: " + str(Message))
 				
 	else:
 		logger.error("apiCall " + str(apiCall.url) + "  Failed, status code: " + str(apiCall.statusCode))
-		print "apiCall " + str(apiCall.url) + "  Failed, status code: " + str(apiCall.statusCode)
-			
-def syncIronBanner():
-	startTime = time.time()
-	queryParams = {}
-	#print queryParams
-	queryPath = 'destiny/clans/getAllPlayers'
-	playerList = system.dataset.toPyDataSet(system.db.runNamedQuery(queryPath, queryParams))
-	
-	for player in playerList:
-		characters = json.loads(player['characterids'])
-		for i in characters:
-			ironBanner(player['membershiptype'],player['destinyid'],i,"?mode=19&count=5")
-	executionTime = (time.time() - startTime)
-	system.db.runNamedQuery("api/scriptLogs", {"script":"syncIronBanner","script_runtime":executionTime})
-	print "syncIronBanner Script completed in " + str(executionTime) + " seconds"
-	logger.info("syncIronBanner Script completed in " + str(executionTime) + " seconds")
-
-def resetIronBanner():
-	startTime = time.time()
-	system.db.runNamedQuery('destiny/activities/deleteAllActivities', {})
-	queryParams = {}
-	#print queryParams
-	queryPath = 'destiny/clans/getAllPlayers'
-	playerList = system.dataset.toPyDataSet(system.db.runNamedQuery(queryPath, queryParams))
-	
-	for player in playerList:
-		characters = json.loads(player['characterids'])
-		for i in characters:
-			ironBanner(player['membershiptype'],player['destinyid'],i,"?mode=19")
-	executionTime = (time.time() - startTime)
-	system.db.runNamedQuery("api/scriptLogs", {"script":"syncIronBanner","script_runtime":executionTime})
-	print "resetIronBanner Script completed in " + str(executionTime) + " seconds"
-	logger.info("resetIronBanner Script completed in " + str(executionTime) + " seconds")
+		#print "apiCall " + str(apiCall.url) + "  Failed, status code: " + str(apiCall.statusCode)
