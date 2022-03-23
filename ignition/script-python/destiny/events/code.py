@@ -49,7 +49,7 @@ def getCurrentEvent(currentTimestamp):
 		return {'eventName':'Iron Banner', 'mode':19}
 	elif system.date.isBetween(currentTimestamp,currentEvents[1]['start_date'],currentEvents[1]['end_date']):
 		return {'eventName':'Nightfall', 'mode':46}
-	elif system.date.isBetween(currentTimestamp,currentEvents[2]['start_date'],currentEvents[2]['start_date']):
+	elif system.date.isBetween(currentTimestamp,currentEvents[2]['start_date'],currentEvents[2]['end_date']):
 		return {'eventName':'Trials of Osiris', 'mode':84}
 
 # Tuesday at Reset record Trials / Iron Banner Winners, flush activities.
