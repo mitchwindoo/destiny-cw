@@ -1,3 +1,11 @@
+"""
+This script handles the gathering of data related to Destiny Activities, and their corosponding Post Game Carnage Report (PGCR).
+Valid Activity Modes are: 
+Strike: 3, Raid: 4, AllPvP: 5, AllPvE: 7, Control: 10, Clash: 12, CrimsonDoubles: 15, 
+ScoredNightfall: 46, AllStrikes: 18, IronBanner: 19, AllMayhem: 25, Rumble: 48, 
+Gambit: 63, AllPvECompetitive: 64, PvPCompetitive: 69, PvPQuickplay: 70, Elimination: 80, Momentum: 81, Dungeon: 82, TrialsOfOsiris: 84
+"""
+
 # Global Imports
 import json
 import time
@@ -102,6 +110,10 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 						except:
 							logger.error("Failed to get PGCR on " + str(activity['activityDetails']['instanceId']) + ", PlayerId: " + str(destinyMembershipId))
 							pgcr = {'pgcr_extended':{}}
+						try:
+							standing = activity['values']['standing']['basic']['displayValue']
+						except:
+							standing = 'NA'
 						# Write Values to the Database
 						queryParams = {'playercharacterid':str(characterId),
 							'playerdestinyid':str(destinyMembershipId),
@@ -113,8 +125,6 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 							'timestamp':timestamp,
 							'activityduration':activity['values']['activityDurationSeconds']['basic']['displayValue'],
 							'assists':activity['values']['assists']['basic']['value'],
-							'avgscoreperkill':activity['values']['averageScorePerKill']['basic']['value'],
-							'avgscoreperlife':activity['values']['averageScorePerLife']['basic']['value'],
 							'completed':activity['values']['completed']['basic']['displayValue'],
 							'completionreason':activity['values']['completionReason']['basic']['displayValue'],
 							'deaths':activity['values']['deaths']['basic']['value'],
@@ -125,7 +135,7 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 							'killsdeathsratio':activity['values']['killsDeathsRatio']['basic']['value'],
 							'opponentsdefeated':activity['values']['opponentsDefeated']['basic']['value'],
 							'score':activity['values']['score']['basic']['value'],
-							'standing':activity['values']['standing']['basic']['displayValue'],
+							'standing':standing,
 							'team':activity['values']['team']['basic']['value'],
 							'teamscore':activity['values']['teamScore']['basic']['value'],
 							'timeplayed':activity['values']['timePlayedSeconds']['basic']['displayValue'],
@@ -146,3 +156,35 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 	else:
 		logger.error("apiCall " + str(apiCall.url) + "  Failed, status code: " + str(apiCall.statusCode))
 		#print "apiCall " + str(apiCall.url) + "  Failed, status code: " + str(apiCall.statusCode)
+
+def updateActivities(mode):
+	startTime = time.time()
+	queryParams = {}
+	logger.info("destiny.activities.update Started")
+	#print queryParams
+	queryPath = 'destiny/clans/getAllPlayers'
+	playerList = system.dataset.toPyDataSet(system.db.runNamedQuery(queryPath, queryParams))
+	for player in playerList:
+		characters = json.loads(player['characterids'])
+		for i in characters:
+			getActivities(player['membershiptype'],player['destinyid'],i,"?mode="+str(mode)+"&count=5")
+	executionTime = (time.time() - startTime)
+	system.db.runNamedQuery("api/scriptLogs", {"script":"destiny.activities.update","script_runtime":executionTime})
+	print "destiny.activities.update Script completed in " + str(executionTime) + " seconds"
+	logger.info("destiny.activities.update Script completed in " + str(executionTime) + " seconds")
+
+def fullSyncActivities(mode):
+	startTime = time.time()
+	queryParams = {}
+	logger.info("destiny.activities.fullSync Started")
+	#print queryParams
+	queryPath = 'destiny/clans/getAllPlayers'
+	playerList = system.dataset.toPyDataSet(system.db.runNamedQuery(queryPath, queryParams))
+	for player in playerList:
+		characters = json.loads(player['characterids'])
+		for i in characters:
+			getActivities(player['membershiptype'],player['destinyid'],i,"?mode="+str(mode))
+	executionTime = (time.time() - startTime)
+	system.db.runNamedQuery("api/scriptLogs", {"script":"destiny.activities.fullSync","script_runtime":executionTime})
+	print "destiny.activities.fullSync Script completed in " + str(executionTime) + " seconds"
+	logger.info("destiny.activities.fullSync Script completed in " + str(executionTime) + " seconds")

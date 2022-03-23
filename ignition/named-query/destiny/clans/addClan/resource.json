@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "e22f77bfad00ab753f4d1eb4f606180bcfca23ca64353a1917eb5c499380c2a8",
+    "lastModificationSignature": "ff5a1e817e7e662e2ae8ba453dfe41037839db0f82981f95ed75c36acb88e53c",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +27,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-14T15:43:34Z"
+      "timestamp": "2022-03-22T19:55:14Z"
     },
     "parameters": [
       {
@@ -68,6 +68,11 @@
       {
         "type": "Parameter",
         "identifier": "clanMotto",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanCallsign",
         "sqlType": 7
       }
     ]

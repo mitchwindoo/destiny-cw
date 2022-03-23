@@ -4,7 +4,7 @@
   "props": {
     "defaultSize": {
       "height": 48,
-      "width": 340
+      "width": 400
     }
   },
   "root": {
@@ -58,6 +58,20 @@
               ],
               "type": "property"
             }
+          },
+          "props.items[3].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[3].target}, \"bold\", \"normal\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
           }
         },
         "props": {
@@ -103,9 +117,24 @@
               "items": [],
               "label": "Individual Scores",
               "style": {
+                "borderRightColor": "#FFFFFF",
+                "borderRightStyle": "solid",
+                "borderRightWidth": "1px",
                 "classes": ""
               },
               "target": "/individual"
+            },
+            {
+              "enabled": true,
+              "icon": {
+                "path": "material/restore"
+              },
+              "items": [],
+              "label": "Past Events",
+              "style": {
+                "classes": ""
+              },
+              "target": "/pastevents"
             }
           ],
           "style": {

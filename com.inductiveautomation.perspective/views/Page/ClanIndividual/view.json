@@ -2,11 +2,12 @@
   "custom": {
     "clanInfo": {
       "about": "Uprising Family Gaming is a growing XB1 community of highly connected gamers unified around the idea that we are all here to play games. The thing that holds us all together is that family comes first, even during a raid. This is the kind of group that understands that.\n\nTo facilitate the kind of communication we need, we use an external platform called Discord. This lets us operate multiple Uprising clans but still function as a big family. To apply simply request to set us as your Destiny clan and one of our admins will respond with a link to our application.\n\nThe clan membership process usually takes several days, because we like to know that new members will be a great fit with our existing community. If you found us, chances are you\u0027ll fit right in. Whether we\u0027re forming raid parties, dominating in the crucible, or supporting each other in the real world, We Are Uprising.\n\n-- The Nine --",
+      "callsign": "UW",
       "founder": "FlawlessDesi#413",
       "founderbungieid": 10048106,
-      "founderdestinyid": "4611686018443863040",
+      "founderdestinyid": "4611686018443862947",
       "id": 1163459,
-      "members": 44,
+      "members": 45,
       "motto": "Family, Fun, Gaming",
       "name": "Uprising Warmind"
     }
@@ -87,6 +88,14 @@
               "shrink": 0
             },
             "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
               "props.params.clanId": {
                 "binding": {
                   "config": {
@@ -100,6 +109,7 @@
               "params": {
                 "awardDesc": "Most games played",
                 "awardName": "MVP",
+                "display": true,
                 "namedQuery": "destiny/activities/awardsClanMostGames"
               },
               "path": "Page/Embedded/clanAward",
@@ -118,6 +128,14 @@
               "shrink": 0
             },
             "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
               "props.params.clanId": {
                 "binding": {
                   "config": {
@@ -131,6 +149,7 @@
               "params": {
                 "awardDesc": "Highest average score",
                 "awardName": "Top AVG Score",
+                "display": false,
                 "namedQuery": "destiny/activities/awardsClanHighestAvgScore"
               },
               "path": "Page/Embedded/clanAward",
@@ -149,6 +168,14 @@
               "shrink": 0
             },
             "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
               "props.params.clanId": {
                 "binding": {
                   "config": {
@@ -162,6 +189,7 @@
               "params": {
                 "awardDesc": "Highest score in a single game",
                 "awardName": "Top Game Score",
+                "display": true,
                 "namedQuery": "destiny/activities/awardsClanHighestSingleGameScore"
               },
               "path": "Page/Embedded/clanAward",
@@ -180,6 +208,14 @@
               "shrink": 0
             },
             "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
               "props.params.clanId": {
                 "binding": {
                   "config": {
@@ -193,6 +229,7 @@
               "params": {
                 "awardDesc": "Highest AVG Kill/Death Ratio",
                 "awardName": "Top K/D",
+                "display": true,
                 "namedQuery": "destiny/activities/awardsClanHighestKD"
               },
               "path": "Page/Embedded/clanAward",
@@ -386,7 +423,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "score",
+              "field": "game_score",
               "footer": {
                 "align": "center",
                 "justify": "left",

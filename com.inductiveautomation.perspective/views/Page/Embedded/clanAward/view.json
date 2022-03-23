@@ -13,6 +13,7 @@
     "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
     "awardName": "Highest AVG Score",
     "clanId": 1422232,
+    "display": false,
     "namedQuery": "destiny/activities/awardsHighestAvgScore"
   },
   "propConfig": {
@@ -66,6 +67,17 @@
       "paramDirection": "input",
       "persistent": true
     },
+    "params.display": {
+      "binding": {
+        "config": {
+          "expression": "len({view.custom.awardDetails}) \u003e 0"
+        },
+        "overlayOptOut": true,
+        "type": "expr"
+      },
+      "paramDirection": "output",
+      "persistent": true
+    },
     "params.namedQuery": {
       "paramDirection": "input",
       "persistent": true
@@ -87,15 +99,6 @@
           "shrink": 0
         },
         "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "len({view.custom.awardDetails}) \u003e 0"
-              },
-              "overlayOptOut": true,
-              "type": "expr"
-            }
-          },
           "props.text": {
             "binding": {
               "config": {
@@ -127,15 +130,6 @@
           "shrink": 0
         },
         "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "len({view.custom.awardDetails}) \u003e 0"
-              },
-              "overlayOptOut": true,
-              "type": "expr"
-            }
-          },
           "props.text": {
             "binding": {
               "config": {
@@ -179,15 +173,6 @@
           "shrink": 0
         },
         "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "len({view.custom.awardDetails}) \u003e 0"
-              },
-              "overlayOptOut": true,
-              "type": "expr"
-            }
-          },
           "props.text": {
             "binding": {
               "config": {
@@ -221,15 +206,6 @@
           "shrink": 0
         },
         "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "len({view.custom.awardDetails}) \u003e 0"
-              },
-              "overlayOptOut": true,
-              "type": "expr"
-            }
-          },
           "props.text": {
             "binding": {
               "config": {

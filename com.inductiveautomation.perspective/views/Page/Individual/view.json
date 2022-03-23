@@ -197,7 +197,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "score",
+              "field": "game_score",
               "footer": {
                 "align": "center",
                 "justify": "left",
@@ -265,7 +265,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "playerid",
+              "field": "destinyid",
               "footer": {
                 "align": "center",
                 "justify": "left",
@@ -333,7 +333,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "clanid",
+              "field": "clanId",
               "footer": {
                 "align": "center",
                 "justify": "left",

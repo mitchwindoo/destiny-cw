@@ -26,10 +26,25 @@
           "basis": "56px",
           "shrink": 0
         },
+        "propConfig": {
+          "props.params.text": {
+            "binding": {
+              "config": {
+                "expression": "now(60)"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn destiny.events.getCurrentEvent(value)[\u0027eventName\u0027] + \" Clan Scores\"",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
         "props": {
           "params": {
-            "icon": "show_chart",
-            "text": "Clan Scores"
+            "icon": "show_chart"
           },
           "path": "Page/Embedded/Title"
         },
@@ -43,12 +58,47 @@
         "position": {
           "shrink": 0
         },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "now(60)"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn destiny.events.getCurrentEvent(value)[\u0027mode\u0027]",
+                  "type": "script"
+                },
+                {
+                  "fallback": "Error in Script",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": 19,
+                      "output": "Kills +10 Points, Assists +2.5 Points, Deaths -5 Points +5% Bonus for each Clan Member in Fireteam"
+                    },
+                    {
+                      "input": 84,
+                      "output": "Kills +10 Points, Assists +2.5 Points, Deaths -5 Points +5% Bonus for each Clan Member in Fireteam"
+                    },
+                    {
+                      "input": 46,
+                      "output": "Kills +10 Points, Assists +2.5 Points, Deaths -5 Points +5% Bonus for each Clan Member in Fireteam"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
         "props": {
           "style": {
             "classes": "Page/Text Page/Margins",
             "padding": "10px"
-          },
-          "text": "The SCORE calculation is \"(kills x k/d) x 100\" ex. (12 kills x 1.4 k/d) x 100 \u003d 1680"
+          }
         },
         "type": "ia.display.label"
       },
@@ -56,15 +106,26 @@
         "children": [
           {
             "meta": {
-              "name": "mvp"
+              "name": "overall_leader"
             },
             "position": {
               "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              }
             },
             "props": {
               "params": {
                 "awardDesc": "",
                 "awardName": "Overall Score Leader",
+                "display": true,
                 "namedQuery": "destiny/activities/getTotalActivityScore"
               },
               "path": "Page/Embedded/clanPlacement",
@@ -77,15 +138,26 @@
           },
           {
             "meta": {
-              "name": "mvp_0"
+              "name": "small_leader"
             },
             "position": {
               "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              }
             },
             "props": {
               "params": {
                 "awardDesc": "1-25 Members",
                 "awardName": "Small Clan Leader",
+                "display": false,
                 "namedQuery": "destiny/activities/getSmallClanActivityScore"
               },
               "path": "Page/Embedded/clanPlacement",
@@ -98,15 +170,26 @@
           },
           {
             "meta": {
-              "name": "mvp_1"
+              "name": "medium_leader"
             },
             "position": {
               "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              }
             },
             "props": {
               "params": {
                 "awardDesc": "26-65 Members",
                 "awardName": "Medium Clan Leader",
+                "display": true,
                 "namedQuery": "destiny/activities/getMediumClanActivityScore"
               },
               "path": "Page/Embedded/clanPlacement",
@@ -119,15 +202,26 @@
           },
           {
             "meta": {
-              "name": "mvp_2"
+              "name": "large_leader"
             },
             "position": {
               "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              }
             },
             "props": {
               "params": {
                 "awardDesc": "65+ Members",
                 "awardName": "Large Clan Leader",
+                "display": true,
                 "namedQuery": "destiny/activities/getLargeClanActivityScore"
               },
               "path": "Page/Embedded/clanPlacement",
@@ -247,7 +341,7 @@
                   "boolean": "checkbox",
                   "dateFormat": "MM/DD/YYYY",
                   "editable": false,
-                  "field": "Score",
+                  "field": "game_score",
                   "footer": {
                     "align": "center",
                     "justify": "left",
@@ -262,7 +356,7 @@
                     "style": {
                       "classes": ""
                     },
-                    "title": ""
+                    "title": "Score"
                   },
                   "justify": "left",
                   "number": "value",
@@ -511,7 +605,7 @@
                       "boolean": "checkbox",
                       "dateFormat": "MM/DD/YYYY",
                       "editable": false,
-                      "field": "Score",
+                      "field": "game_score",
                       "footer": {
                         "align": "center",
                         "justify": "left",
@@ -526,7 +620,7 @@
                         "style": {
                           "classes": ""
                         },
-                        "title": ""
+                        "title": "Score"
                       },
                       "justify": "left",
                       "number": "value",
@@ -784,7 +878,7 @@
                       "boolean": "checkbox",
                       "dateFormat": "MM/DD/YYYY",
                       "editable": false,
-                      "field": "Score",
+                      "field": "game_score",
                       "footer": {
                         "align": "center",
                         "justify": "left",
@@ -799,7 +893,7 @@
                         "style": {
                           "classes": ""
                         },
-                        "title": ""
+                        "title": "Score"
                       },
                       "justify": "left",
                       "number": "value",
@@ -1057,7 +1151,7 @@
                       "boolean": "checkbox",
                       "dateFormat": "MM/DD/YYYY",
                       "editable": false,
-                      "field": "Score",
+                      "field": "game_score",
                       "footer": {
                         "align": "center",
                         "justify": "left",
@@ -1072,7 +1166,7 @@
                         "style": {
                           "classes": ""
                         },
-                        "title": ""
+                        "title": "Score"
                       },
                       "justify": "left",
                       "number": "value",

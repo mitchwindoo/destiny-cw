@@ -1,0 +1,2 @@
+INSERT INTO event_history ( event_name, end_date, lclan_winner_clanid, lclan_winner_score, mclan_winner_clanid, mclan_winner_score, sclan_winner_clanid, sclan_winner_score, overall_winner_clanid, overall_winner_score )
+VALUES ( :event_name, CURRENT_DATE, :lclan_winner_clanid, :lclan_winner_score, :mclan_winner_clanid, :mclan_winner_score, :sclan_winner_clanid, :sclan_winner_score, :overall_winner_clanid, :overall_winner_score )

@@ -37,6 +37,279 @@
       },
       {
         "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "basis": "155px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "queryPath": "destiny/events/getCurrentEvents",
+                "returnFormat": "dataset"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn system.dataset.sort(value,1)",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.headerGroups[0][0].title": {
+            "binding": {
+              "config": {
+                "expression": "now(60000)"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"Event Schedule -- Current Event: \" + destiny.events.getCurrentEvent(value)[\u0027eventName\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "event_name",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Name"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY HH:mm:ss",
+              "editable": false,
+              "field": "start_date",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Start Date"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY HH:mm:ss",
+              "editable": false,
+              "field": "end_date",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "End Date"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "date",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            }
+          ],
+          "enableHeaderGroups": true,
+          "headerGroups": [
+            [
+              {
+                "align": "center",
+                "justify": "center",
+                "span": 3,
+                "style": {
+                  "classes": ""
+                }
+              }
+            ]
+          ],
+          "pager": {
+            "bottom": false
+          },
+          "rows": {
+            "highlight": {
+              "enabled": false
+            }
+          },
+          "selection": {
+            "enableRowSelection": false
+          }
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "meta": {
           "name": "Label"
         },
         "position": {
@@ -163,7 +436,27 @@
       },
       {
         "meta": {
-          "name": "Label_1"
+          "name": "Markdown"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "source": "## Welcome to Destiny 2 Clan Wars\n#\n---\n#\nThank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. I hope to change that by publishing all of my application code to GitHub. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. If you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon (https://www.patreon.com/mitchwindoo) or Buy Me A Coffee (https://www.buymeacoffee.com/d2clanwars).  100% of your funds go to server costs and improvements. \n#\nDestiny 2 Clan Wars is built using Ignition Maker Edition by Inductive Automation, learn more here: https://inductiveautomation.com/ignition/maker-edition\n#\n---\n#\n## How To Join\nJoin our discord using the button below or follow this link: https://discord.gg/gchx7SMEh9, Then you can post a message in the clan-applications channel with your clan link from Bungie.net\n#\n---\n#\n## Financial Disclosure\n**Linode Server: $120/year**\n#\n**SSL Certificate: $52/year**\n#\n**Domain Name: $13/year**",
+          "style": {
+            "borderBottomStyle": "none",
+            "borderLeftStyle": "none",
+            "borderRightStyle": "none",
+            "borderTopStyle": "solid",
+            "borderTopWidth": "0.2px",
+            "padding": "20px"
+          }
+        },
+        "type": "ia.display.markdown"
+      },
+      {
+        "meta": {
+          "name": "Label_3"
         },
         "position": {
           "shrink": 0
@@ -193,26 +486,6 @@
           }
         },
         "type": "ia.display.label"
-      },
-      {
-        "meta": {
-          "name": "Markdown"
-        },
-        "position": {
-          "grow": 1
-        },
-        "props": {
-          "source": "## Welcome to Destiny 2 Clan Wars\n#\n---\n#\nThank you for checking out my little application. Over the years Clan Wars has come and gone from various developers and eventually they all had to stop because they couldn\u0027t continue to maintain the codebase. I hope to change that by publishing all of my application code to GitHub. That way if anyone has contributions they want to make, or even assist in maintaining the service, they can do that. If you are interested in assisting with the financial side of keeping this service running, you can support the project on Patreon (https://www.patreon.com/mitchwindoo) or Buy Me A Coffee (https://www.buymeacoffee.com/d2clanwars).  100% of your funds go to server costs and improvements. \n#\nDestiny 2 Clan Wars is built using Ignition Maker Edition by Inductive Automation, learn more here: https://inductiveautomation.com/ignition/maker-edition\n#\n---\n#\n## How To Join\nJoin our discord using the button below or follow this link: https://discord.gg/gchx7SMEh9, Then you can post a message in the clan-applications channel with your clan link from Bungie.net\n#\n---\n#\n## Financial Disclosure\n**Linode Server: $120/year**\n#\n**SSL Certificate: $52/year**\n#\n**Domain Name: $13/year**",
-          "style": {
-            "borderBottomStyle": "none",
-            "borderLeftStyle": "none",
-            "borderRightStyle": "none",
-            "borderTopStyle": "solid",
-            "borderTopWidth": "0.2px",
-            "padding": "20px"
-          }
-        },
-        "type": "ia.display.markdown"
       },
       {
         "children": [

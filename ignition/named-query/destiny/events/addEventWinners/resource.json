@@ -1,0 +1,80 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "efafa9b56a20fc0c1229664adf30a07a2a7bd567abbbcdfbbd733ff6249e0543",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-03-23T05:55:26Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "event_name",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lclan_winner_score",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "mclan_winner_score",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "sclan_winner_clanid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "mclan_winner_clanid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lclan_winner_clanid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "sclan_winner_score",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "overall_winner_clanid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "overall_winner_score",
+        "sqlType": 5
+      }
+    ]
+  }
+}

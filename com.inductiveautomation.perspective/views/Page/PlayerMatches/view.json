@@ -78,6 +78,14 @@
               "shrink": 0
             },
             "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
               "props.params.playerId": {
                 "binding": {
                   "config": {
@@ -90,6 +98,7 @@
             "props": {
               "params": {
                 "awardName": "Total Games Played",
+                "display": false,
                 "namedQuery": "destiny/activities/awardsPlayerGameCount"
               },
               "path": "Page/Embedded/playerAward"
@@ -104,6 +113,14 @@
               "shrink": 0
             },
             "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
               "props.params.playerId": {
                 "binding": {
                   "config": {
@@ -116,6 +133,7 @@
             "props": {
               "params": {
                 "awardName": "Top Single Game Score",
+                "display": false,
                 "namedQuery": "destiny/activities/awardsPlayerHighestSingleGameScore"
               },
               "path": "Page/Embedded/playerAward"
@@ -130,6 +148,14 @@
               "shrink": 0
             },
             "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
               "props.params.playerId": {
                 "binding": {
                   "config": {
@@ -142,6 +168,7 @@
             "props": {
               "params": {
                 "awardName": "Average Game Score",
+                "display": false,
                 "namedQuery": "destiny/activities/awardsPlayerAvgScore"
               },
               "path": "Page/Embedded/playerAward"
@@ -153,6 +180,7 @@
               "name": "playerAward_2"
             },
             "position": {
+              "display": false,
               "shrink": 0
             },
             "propConfig": {
@@ -168,6 +196,7 @@
             "props": {
               "params": {
                 "awardName": "Average Game K/D",
+                "display": false,
                 "namedQuery": "destiny/activities/awardsPlayerKD"
               },
               "path": "Page/Embedded/playerAward"

@@ -1,22 +1,23 @@
-SELECT
-	ROUND(SUM((activities.kills * activities.killsdeathsratio) * 100)) AS "score", 
-	players."destinyid" AS "playerid", 
-	clans."id" AS "clanid",
-	ROW_NUMBER () OVER (ORDER BY SUM((activities.kills * activities.killsdeathsratio) * 100) desc) as position,
+WITH current_event AS (
+		SELECT mode,start_date,end_date
+		FROM events
+		WHERE CURRENT_TIMESTAMP BETWEEN events.start_date AND events.end_date
+) SELECT
+	players."destinyid",
+	clans."id" AS "clanId",
+	ROUND ( SUM((((activities.kills * 10) + (activities.assists * 2.5)) - (activities.deaths * 5))) ) as game_score,
+	ROW_NUMBER ( ) OVER ( ORDER BY SUM((((activities.kills * 10) + (activities.assists * 2.5)) - (activities.deaths * 5))) DESC ) AS POSITION,
 	COUNT (players."destinyid") as "gamesplayed"
 FROM
 	activities
-	INNER JOIN
-	players
-	ON 
-		activities.playerdestinyid = players.destinyid
-	INNER JOIN
-	clans
-	ON 
-		players.clanid = clans."id"
-WHERE timestamp between '2022-03-15 17:00:00+00' and now()
+	INNER JOIN players ON activities.playerdestinyid = players.destinyid
+	INNER JOIN clans ON players.clanid = clans."id"
+	INNER JOIN current_event ON activities.mode = current_event.mode
+WHERE
+	TIMESTAMP BETWEEN current_event.start_date AND current_event.end_date 
+	AND completed = 'Yes' 
 GROUP BY
 	players."destinyid",
 	clans."id"
 ORDER BY
-	SUM((activities.kills * activities.killsdeathsratio) * 100) desc
+	game_score DESC

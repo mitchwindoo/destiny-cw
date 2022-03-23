@@ -12,6 +12,7 @@
   "params": {
     "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
     "awardName": "Highest AVG Score",
+    "display": false,
     "namedQuery": "destiny/activities/awardsHighestAvgScore",
     "playerId": "4611686018429553000"
   },
@@ -60,6 +61,17 @@
     },
     "params.awardName": {
       "paramDirection": "input",
+      "persistent": true
+    },
+    "params.display": {
+      "binding": {
+        "config": {
+          "expression": "len({view.custom.awardDetails}) \u003e 0"
+        },
+        "overlayOptOut": true,
+        "type": "expr"
+      },
+      "paramDirection": "output",
       "persistent": true
     },
     "params.namedQuery": {

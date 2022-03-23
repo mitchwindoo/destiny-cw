@@ -1,12 +1,13 @@
 {
   "custom": {
     "leaderboard": {
-      "clanId": 4125823
+      "clanId": 3700850
     }
   },
   "params": {
     "awardDesc": "",
     "awardName": "Highest Overall Score",
+    "display": true,
     "namedQuery": "destiny/activities/getTotalActivityScore"
   },
   "propConfig": {
@@ -20,7 +21,7 @@
         },
         "transforms": [
           {
-            "code": "\tquery \u003d system.dataset.toPyDataSet(system.db.runNamedQuery(value[\u0027namedQuery\u0027],{}))\n\tclanId \u003d query[0][\u0027clanid\u0027]\n\t\t\n\treturn {\u0027clanId\u0027:clanId}\n\t",
+            "code": "\tquery \u003d system.dataset.toPyDataSet(system.db.runNamedQuery(value[\u0027namedQuery\u0027],{}))\n\tclanId \u003d query[0][\u0027clanid\u0027]\n\tscore \u003d query[0][\u0027game_score\u0027]\n\t\t\n\treturn {\u0027clanId\u0027:clanId}\n\t",
             "type": "script"
           }
         ],
@@ -34,6 +35,17 @@
     },
     "params.awardName": {
       "paramDirection": "input",
+      "persistent": true
+    },
+    "params.display": {
+      "binding": {
+        "config": {
+          "expression": "len({view.custom.leaderboard}) \u003e 0"
+        },
+        "overlayOptOut": true,
+        "type": "expr"
+      },
+      "paramDirection": "output",
       "persistent": true
     },
     "params.namedQuery": {
@@ -57,15 +69,6 @@
           "shrink": 0
         },
         "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "len({view.custom.leaderboard}) \u003e 0"
-              },
-              "overlayOptOut": true,
-              "type": "expr"
-            }
-          },
           "props.text": {
             "binding": {
               "config": {
@@ -149,15 +152,6 @@
           "shrink": 0
         },
         "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "len({view.custom.leaderboard}) \u003e 0"
-              },
-              "overlayOptOut": true,
-              "type": "expr"
-            }
-          },
           "props.text": {
             "binding": {
               "config": {

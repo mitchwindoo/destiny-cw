@@ -8,6 +8,10 @@
       "viewPath": "Page/Individual",
       "title": ""
     },
+    "/pastevents": {
+      "viewPath": "Page/EventHistory",
+      "title": ""
+    },
     "/clan/:clanId": {
       "viewPath": "Page/ClanIndividual",
       "title": ""

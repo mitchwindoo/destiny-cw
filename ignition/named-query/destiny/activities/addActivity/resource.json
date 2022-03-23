@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "40d12ffd1d9bc22dbb28965bdef91077e32ba2bef018b5ccc7bdb35d6eb3c89b",
+    "lastModificationSignature": "0b40bc6a0c3336389629f347ae6cbf232963a7cf4ee00f5742324f6bde74ecdf",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +27,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-21T15:34:03Z"
+      "timestamp": "2022-03-23T15:22:27Z"
     },
     "parameters": [
       {
@@ -79,16 +79,6 @@
         "type": "Parameter",
         "identifier": "assists",
         "sqlType": 2
-      },
-      {
-        "type": "Parameter",
-        "identifier": "avgscoreperkill",
-        "sqlType": 4
-      },
-      {
-        "type": "Parameter",
-        "identifier": "avgscoreperlife",
-        "sqlType": 4
       },
       {
         "type": "Parameter",
