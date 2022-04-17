@@ -8,7 +8,8 @@ SELECT
 	(SELECT name from clans where id = event_history.mclan_winner_clanid) as "Medium Clan", 
 	event_history.mclan_winner_score as "Medium Clan Score", 
 	(SELECT name from clans where id = event_history.sclan_winner_clanid) as "Small Clan", 
-	event_history.sclan_winner_score as "Small Clan Score"
+	event_history.sclan_winner_score as "Small Clan Score",
+	event_history.event_id
 FROM
 	event_history
 ORDER BY

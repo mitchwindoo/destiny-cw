@@ -10,7 +10,8 @@
       "members": 45,
       "motto": "Family, Fun, Gaming",
       "name": "Uprising Warmind"
-    }
+    },
+    "eventId": null
   },
   "params": {
     "value": 1163459
@@ -35,6 +36,9 @@
       },
       "persistent": true
     },
+    "custom.eventId": {
+      "persistent": true
+    },
     "params.value": {
       "paramDirection": "input",
       "persistent": true
@@ -53,7 +57,7 @@
           "dom": {
             "onClick": {
               "config": {
-                "page": "/clan/{view.params.value}"
+                "page": "/event/{view.custom.eventId}/clan/{view.params.value}"
               },
               "scope": "C",
               "type": "nav"
@@ -92,6 +96,19 @@
     },
     "props": {
       "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "eventId",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\tself.view.custom.eventId \u003d payload[\u0027event_id\u0027]",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
     },
     "type": "ia.container.flex"
   }

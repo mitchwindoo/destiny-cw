@@ -1,6 +1,25 @@
 {
   "custom": {},
   "propConfig": {
+    "custom.currentEvent": {
+      "binding": {
+        "config": {
+          "polling": {
+            "enabled": true,
+            "rate": "60"
+          },
+          "queryPath": "destiny/events/getCurrentEvent",
+          "returnFormat": "json"
+        },
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      }
+    },
     "props.auth": {
       "access": "PRIVATE",
       "persistent": false
@@ -48,10 +67,32 @@
     "props.lastActivity": {
       "access": "SYSTEM",
       "persistent": false
+    },
+    "props.theme": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "device_id": "{this.props.device.identifier}"
+          },
+          "queryPath": "session/getTheme"
+        },
+        "overlayOptOut": true,
+        "transforms": [
+          {
+            "code": "\tif value \u003d\u003d None:\n\t\treturn \u0027light\u0027\n\telse:\n\t\treturn value",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tsystem.db.runNamedQuery(\u0027session/updateTheme\u0027, {\u0027new_theme\u0027:currentValue.value,\u0027device_id\u0027:self.props.device.identifier})"
+      }
     }
   },
   "props": {
-    "address": "24.119.10.82",
+    "address": "184.155.215.99",
     "device": {},
     "geolocation": {},
     "locale": "en-US"

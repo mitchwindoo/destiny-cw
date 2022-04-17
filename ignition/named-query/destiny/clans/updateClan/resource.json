@@ -1,0 +1,75 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "e99a4879306d74cf9bc409e4dd020b9ad37eb952f3ef48c4e98868cc5bc31829",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-04-05T03:24:28Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "clanId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanFounder",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanFounderBungieId",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanFounderDestinyId",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanAbout",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanMembers",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanMotto",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanCallsign",
+        "sqlType": 7
+      }
+    ]
+  }
+}

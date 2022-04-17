@@ -1,0 +1,1 @@
+SELECT theme FROM sessions WHERE device_id = :device_id;

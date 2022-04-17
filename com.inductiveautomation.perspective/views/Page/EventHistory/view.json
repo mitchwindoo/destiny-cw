@@ -37,6 +37,279 @@
       },
       {
         "meta": {
+          "name": "Table_0"
+        },
+        "position": {
+          "basis": "200px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "queryPath": "destiny/events/getUpcomingEvents",
+                "returnFormat": "dataset"
+              },
+              "type": "query"
+            }
+          },
+          "props.headerGroups[0][0].title": {
+            "binding": {
+              "config": {
+                "expression": "now(0)"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"Event Schedule -- Current Event: \" + destiny.events.getCurrentEvent()[\u0027event_name\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "event_name",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Name"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY HH:mm:ss",
+              "editable": false,
+              "field": "start_date",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Start Date"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY HH:mm:ss",
+              "editable": false,
+              "field": "end_date",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "End Date"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "date",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            }
+          ],
+          "enableHeaderGroups": true,
+          "headerGroups": [
+            [
+              {
+                "align": "center",
+                "justify": "center",
+                "span": 3,
+                "style": {
+                  "classes": "",
+                  "fontSize": "18px",
+                  "fontWeight": "bold",
+                  "height": "40px"
+                }
+              }
+            ]
+          ],
+          "pager": {
+            "bottom": false
+          },
+          "rows": {
+            "highlight": {
+              "enabled": false
+            }
+          },
+          "selection": {
+            "enableRowSelection": false
+          },
+          "style": {
+            "margin": "5px"
+          }
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "meta": {
           "name": "Table"
         },
         "position": {
@@ -61,7 +334,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "Event",
+              "field": "event_id",
               "footer": {
                 "align": "center",
                 "justify": "left",
@@ -105,7 +378,7 @@
                   }
                 }
               },
-              "render": "auto",
+              "render": "view",
               "resizable": true,
               "sort": "none",
               "sortable": true,
@@ -120,7 +393,7 @@
                 }
               },
               "viewParams": {},
-              "viewPath": "",
+              "viewPath": "Page/Embedded/eventName",
               "visible": true,
               "width": ""
             },
@@ -602,10 +875,21 @@
             }
           ],
           "enableHeaderGroups": true,
-          "filter": {
-            "enabled": true
-          },
           "headerGroups": [
+            [
+              {
+                "align": "center",
+                "justify": "center",
+                "span": 8,
+                "style": {
+                  "classes": "",
+                  "fontSize": "18px",
+                  "fontWeight": "bold",
+                  "height": "40px"
+                },
+                "title": "Event History"
+              }
+            ],
             [
               {
                 "align": "center",

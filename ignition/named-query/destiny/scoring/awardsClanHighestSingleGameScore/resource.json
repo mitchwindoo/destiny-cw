@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "f2ad667104bbaea13cad536cecdc2f814d1f9766b440f162c890a314ffbc44fe",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-04-02T07:47:34Z"
+    },
+    "parameters": [
+      {
+        "type": "QueryString",
+        "identifier": "eventScoring",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "eventId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clanId",
+        "sqlType": 2
+      }
+    ]
+  }
+}

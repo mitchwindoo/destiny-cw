@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Destiny_CW",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "dd5bcc153a0eceb032e81844da7d1c67b1808d6827276016a9fa1c5ba8b154c9",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "cwadmin",
+      "timestamp": "2022-04-02T00:58:51Z"
+    },
+    "parameters": [
+      {
+        "type": "QueryString",
+        "identifier": "eventScoring",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "eventId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "destinyId",
+        "sqlType": 3
+      }
+    ]
+  }
+}

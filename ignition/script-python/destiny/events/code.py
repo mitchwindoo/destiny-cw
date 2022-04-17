@@ -5,7 +5,7 @@
 import calendar
 import time
 import datetime
-logger = system.util.getLogger("events")
+logger = system.util.getLogger("Events")
 currentTimestamp = system.date.now()
 
 # Weekly on Reset -- Update the Event Dates in the Database
@@ -27,30 +27,49 @@ def updateEventTimes():
 	system.db.runNamedQuery('destiny/events/updateEventDates', {'eventName':'Nightfall','startDate':nightfallStartDate,'endDate':nightfallEndDate})
 	system.db.runNamedQuery('destiny/events/updateEventDates', {'eventName':'Trials of Osiris','startDate':trialsStartDate,'endDate':trialsEndDate})
 
-def getEventWinners(eventName):
-	smallClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/activities/getSmallClanActivityScore',{}))
-	mediumClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/activities/getMediumClanActivityScore',{}))
-	largeClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/activities/getLargeClanActivityScore',{}))
-	overallClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/activities/getTotalActivityScore',{}))
-	params = {'event_name':eventName,
-		'lclan_winner_clanid':str(largeClanWinner[0]['clanid']),
-		'lclan_winner_score':str(largeClanWinner[0]['score']),
-		'mclan_winner_clanid':str(mediumClanWinner[0]['clanid']),
-		'mclan_winner_score':str(mediumClanWinner[0]['score']),
-		'sclan_winner_clanid':str(smallClanWinner[0]['clanid']),
-		'sclan_winner_score':str(smallClanWinner[0]['score']),
-		'overall_winner_clanid':str(overallClanWinner[0]['clanid']),
-		'overall_winner_score':str(overallClanWinner[0]['score'])}
+def getEventWinners():
+	eventDetails = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/events/getPreviousEvent',{}))[0]
+	smallClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/scoring/getEventScore',{'eventScoring':str(eventDetails['scoring_sql']),'eventId':eventDetails['id'],'clanFilter':'AND clans."members" < 25','LIMIT':'LIMIT 1'}))
+	mediumClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/scoring/getEventScore',{'eventScoring':str(eventDetails['scoring_sql']),'eventId':eventDetails['id'],'clanFilter':'AND clans."members" > 25 AND clans."members" < 65','LIMIT':'LIMIT 1'}))
+	largeClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/scoring/getEventScore',{'eventScoring':str(eventDetails['scoring_sql']),'eventId':eventDetails['id'],'clanFilter':'AND clans."members" > 65','LIMIT':'LIMIT 1'}))
+	overallClanWinner = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/scoring/getEventScore',{'eventScoring':str(eventDetails['scoring_sql']),'eventId':eventDetails['id'],'clanFilter':'AND clans."members" > 0','LIMIT':'LIMIT 1'}))
+	try:
+		smallClanScore = str(smallClanWinner[0]['game_score'])
+		smallClanId = str(smallClanWinner[0]['clanId'])
+	except:
+		smallClanScore = str(0)
+		smallClanId = str(0)
+	try:
+		mediumClanScore = str(mediumClanWinner[0]['game_score'])
+		mediumClanId = str(mediumClanWinner[0]['clanId'])
+	except:
+		mediumClanScore = str(0)
+		mediumClanId = str(0)
+	try:
+		largeClanScore = str(largeClanWinner[0]['game_score'])
+		largeClanId = str(largeClanWinner[0]['clanId'])
+	except:
+		largeClanScore = str(0)
+		largeClanId = str(0)
+	
+	params = {'event_name':eventDetails['event_name'],
+		'eventid':eventDetails['id'],
+		'lclan_winner_clanid':largeClanId,
+		'lclan_winner_score':largeClanScore,
+		'mclan_winner_clanid':mediumClanId,
+		'mclan_winner_score':mediumClanScore,
+		'sclan_winner_clanid':smallClanId,
+		'sclan_winner_score':smallClanScore,
+		'overall_winner_clanid':str(overallClanWinner[0]['clanId']),
+		'overall_winner_score':str(overallClanWinner[0]['game_score'])}
 	system.db.runNamedQuery('destiny/events/addEventWinners',params)
 
-def getCurrentEvent(currentTimestamp):
-	currentEvents = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/events/getCurrentEvents',{}))
-	if system.date.isBetween(currentTimestamp,currentEvents[0]['start_date'],currentEvents[0]['end_date']):
-		return {'eventName':'Iron Banner', 'mode':19}
-	elif system.date.isBetween(currentTimestamp,currentEvents[1]['start_date'],currentEvents[1]['end_date']):
-		return {'eventName':'Nightfall', 'mode':46}
-	elif system.date.isBetween(currentTimestamp,currentEvents[2]['start_date'],currentEvents[2]['end_date']):
-		return {'eventName':'Trials of Osiris', 'mode':84}
-
+def getCurrentEvent():
+	currentEvent = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/events/getCurrentEvent',{}))
+	return currentEvent[0]
+	
+def getPreviousEvent():
+	previousEvent = system.dataset.toPyDataSet(system.db.runNamedQuery('destiny/events/getPreviousEvent',{}))
+	return previousEvent[0]
 # Tuesday at Reset record Trials / Iron Banner Winners, flush activities.
 # Friday at Reset on Non Iron Banner Weeks, record nightfall winners, flush activities.

@@ -1,7 +1,11 @@
 {
   "pages": {
-    "/player/:playerId": {
-      "viewPath": "Page/PlayerMatches",
+    "/event/:eventId/player/:playerId": {
+      "viewPath": "Page/EventPlayerMatches",
+      "title": ""
+    },
+    "/event/:eventid/clan/:clanid": {
+      "viewPath": "Page/EventClanIndividual",
       "title": ""
     },
     "/individual": {
@@ -12,13 +16,21 @@
       "viewPath": "Page/EventHistory",
       "title": ""
     },
-    "/clan/:clanId": {
-      "viewPath": "Page/ClanIndividual",
+    "/serverstatus": {
+      "viewPath": "Page/ServerStatus",
       "title": ""
     },
-    "/standings": {
-      "viewPath": "Page/Standings",
+    "/event/:eventid": {
+      "viewPath": "Page/EventStandings",
       "title": ""
+    },
+    "/clans": {
+      "viewPath": "Page/Clans/ClanList",
+      "title": ""
+    },
+    "/clan-battles": {
+      "viewPath": "Page/ClanVsClan",
+      "title": "Clan vs Clan Battles"
     },
     "/": {
       "viewPath": "Page/Home"
@@ -35,10 +47,10 @@
         "resizable": false,
         "iconUrl": "",
         "modal": false,
-        "show": "onDemand",
+        "show": "auto",
         "anchor": "fixed",
-        "content": "cover",
-        "autoBreakpoint": 480,
+        "content": "auto",
+        "autoBreakpoint": 768,
         "handle": "hide"
       }
     ],
@@ -48,8 +60,8 @@
         "id": "",
         "viewParams": {
           "path": "Header/Header",
-          "breakpointLarge": 820,
-          "breakpointMedium": 710,
+          "breakpointLarge": 1120,
+          "breakpointMedium": 1120,
           "params": {}
         },
         "size": 58,

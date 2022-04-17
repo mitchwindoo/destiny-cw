@@ -55,16 +55,6 @@
           "basis": "24px",
           "shrink": 0
         },
-        "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "{view.params.size} \u003d \"small\""
-              },
-              "type": "expr"
-            }
-          }
-        },
         "props": {
           "path": "material/menu",
           "style": {
@@ -73,6 +63,37 @@
           }
         },
         "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Image_0",
+          "tooltip": {
+            "enabled": true,
+            "text": "Activities are updating..."
+          }
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]UpdateInProgress"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "fit": {
+            "mode": "contain"
+          },
+          "source": "https://i.gifer.com/W9jo.gif"
+        },
+        "type": "ia.display.image"
       },
       {
         "events": {
@@ -91,6 +112,24 @@
         },
         "position": {
           "basis": "35px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]UpdateInProgress"
+              },
+              "transforms": [
+                {
+                  "expression": "!{value}",
+                  "type": "expression"
+                }
+              ],
+              "type": "tag"
+            }
+          }
         },
         "props": {
           "fit": {
@@ -163,34 +202,6 @@
           "text": "Clan Wars"
         },
         "type": "ia.display.label"
-      },
-      {
-        "meta": {
-          "name": "Menu"
-        },
-        "position": {
-          "grow": 1
-        },
-        "propConfig": {
-          "position.display": {
-            "binding": {
-              "config": {
-                "expression": "{view.params.size} !\u003d \"small\""
-              },
-              "type": "expr"
-            }
-          }
-        },
-        "props": {
-          "path": "Docks/Menu Horizontal",
-          "style": {
-            "marginBottom": "10px",
-            "marginLeft": "16px",
-            "marginRight": "16px",
-            "marginTop": "10px"
-          }
-        },
-        "type": "ia.display.view"
       },
       {
         "meta": {

@@ -45,6 +45,14 @@
               "type": "property"
             }
           },
+          "props.items[2].items[0].target": {
+            "binding": {
+              "config": {
+                "expression": "\"/event/\"+{session.custom.currentEvent.id}"
+              },
+              "type": "expr"
+            }
+          },
           "props.items[2].style.fontWeight": {
             "binding": {
               "config": {
@@ -57,6 +65,14 @@
                 }
               ],
               "type": "property"
+            }
+          },
+          "props.items[2].target": {
+            "binding": {
+              "config": {
+                "expression": "\"/event/\" + {session.custom.currentEvent.id}"
+              },
+              "type": "expr"
             }
           },
           "props.items[3].style.fontWeight": {
@@ -72,15 +88,49 @@
               ],
               "type": "property"
             }
+          },
+          "props.items[4].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[4].target}, \"bold\", \"normal\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[5].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[5].target}, \"bold\", \"normal\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
           }
         },
         "props": {
           "backActionStyle": {
             "classes": "Menu/All_Header"
           },
-          "backActionText": "All Features",
+          "backActionText": "Back",
           "itemStyle": {
-            "classes": "Menu/Item_Vertical"
+            "borderBottomRightRadius": "5px",
+            "borderStyle": "none",
+            "borderTopRightRadius": "5px",
+            "classes": "Menu_Item",
+            "fontFamily": "Arial",
+            "fontSize": "14px",
+            "textTransform": "capitalize"
           },
           "items": [
             {
@@ -99,6 +149,28 @@
               "target": "/"
             },
             {
+              "enabled": true,
+              "items": [],
+              "label": {
+                "icon": {
+                  "path": "material/computer"
+                },
+                "text": "Status"
+              },
+              "navIcon": {
+                "color": "",
+                "path": "q"
+              },
+              "resetOnClick": false,
+              "showHeader": true,
+              "style": {
+                "classes": ""
+              },
+              "target": "/serverstatus",
+              "visible": true
+            },
+            {
+              "enabled": true,
               "items": [],
               "label": {
                 "icon": {
@@ -106,27 +178,30 @@
                 },
                 "text": "Clan Scores"
               },
-              "navIcon": {},
-              "showHeader": false,
+              "navIcon": {
+                "path": ""
+              },
+              "resetOnClick": false,
+              "showHeader": true,
               "style": {
                 "classes": ""
               },
-              "target": "/standings"
+              "visible": true
             },
             {
               "items": [],
               "label": {
                 "icon": {
-                  "path": "material/person"
+                  "path": "material/group"
                 },
-                "text": "Individual Scores"
+                "text": "Registered Clans"
               },
               "navIcon": {},
               "showHeader": false,
               "style": {
                 "classes": ""
               },
-              "target": "/individual"
+              "target": "/clans"
             },
             {
               "enabled": true,
@@ -148,8 +223,56 @@
               },
               "target": "/pastevents",
               "visible": true
+            },
+            {
+              "enabled": true,
+              "items": [],
+              "label": {
+                "icon": {
+                  "path": "material/person"
+                },
+                "text": "Individual Scores"
+              },
+              "navIcon": {
+                "color": "",
+                "path": ""
+              },
+              "resetOnClick": false,
+              "showHeader": true,
+              "style": {
+                "classes": ""
+              },
+              "target": "/individual",
+              "visible": true
+            },
+            {
+              "enabled": true,
+              "items": [],
+              "label": {
+                "icon": {
+                  "path": "material/sports_hockey"
+                },
+                "text": "Clan vs Clan Scores"
+              },
+              "navIcon": {
+                "color": "",
+                "path": ""
+              },
+              "resetOnClick": false,
+              "showHeader": true,
+              "style": {
+                "classes": "",
+                "fontWeight": "normal"
+              },
+              "target": "/clan-battles",
+              "visible": true
             }
-          ]
+          ],
+          "style": {
+            "backgroundColor": "--neutral-10",
+            "classes": "Menu",
+            "marginBottom": "10px"
+          }
         },
         "type": "ia.navigation.menutree"
       }
@@ -159,7 +282,9 @@
     },
     "props": {
       "style": {
-        "classes": "Menu/Menu_Vertical"
+        "borderRightColor": "#e0e0e0",
+        "borderRightStyle": "solid",
+        "borderRightWidth": "0.5px"
       }
     },
     "type": "ia.container.flex"

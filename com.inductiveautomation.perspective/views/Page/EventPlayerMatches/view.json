@@ -1,0 +1,790 @@
+{
+  "custom": {
+    "eventDetails": {
+      "end_date": 1648573200000,
+      "event_name": "PvP - Trials of Osiris",
+      "id": 3,
+      "mode": 84,
+      "scoring": "Kills \u003d 10 Points, Assists \u003d 2.5 Points, Deaths lose 5 points",
+      "scoring_sql": "(((activities.kills*10)+(activities.assists*2.5))-(activities.deaths*5))",
+      "start_date": 1648227600000
+    },
+    "playerInfo": null
+  },
+  "params": {
+    "eventId": 3,
+    "playerId": "4611686018429548000"
+  },
+  "propConfig": {
+    "custom.eventDetails": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "event_id": "{view.params.eventId}"
+          },
+          "queryPath": "destiny/events/getEventDetails",
+          "returnFormat": "json"
+        },
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.playerInfo": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "destinyid": "{view.params.playerId}"
+          },
+          "queryPath": "destiny/clans/getPlayerInfo",
+          "returnFormat": "json"
+        },
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "params.eventId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.playerId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.params.text": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "event_id": "{view.params.eventId}"
+                },
+                "queryPath": "destiny/events/getEventDetails",
+                "returnFormat": "json"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\treturn self.view.custom.playerInfo.name + \" Scores For Event: \" + value[0][\u0027event_name\u0027] + \" // \" + system.date.format(system.date.fromMillis(value[0][\u0027start_date\u0027]), \"MMM dd, yyyy\") + \" - \" + system.date.format(system.date.fromMillis(value[0][\u0027end_date\u0027]), \"MMM dd, yyyy\") ",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "icon": "person"
+          },
+          "path": "Page/Embedded/Title"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "event_id": "{view.params.eventId}"
+                },
+                "queryPath": "destiny/events/getEventDetails",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn value[0][\u0027scoring\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "color": "--neutral-60",
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "totalGames"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.displayData": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "eventId": "{view.custom.eventDetails.id}",
+                      "playerid": "{view.custom.playerInfo.destinyid}"
+                    },
+                    "queryPath": "destiny/scoring/awardsPlayerGameCount",
+                    "returnFormat": "json"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn value[0]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "query"
+                }
+              },
+              "props.params.eventId": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.eventDetails.id"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
+                "awardName": "Total Games Played",
+                "display": true
+              },
+              "path": "Page/Embedded/playerAward"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "topGameScore"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.displayData": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "destinyId": "{view.custom.playerInfo.destinyid}",
+                      "eventId": "{view.custom.eventDetails.id}",
+                      "eventScoring": "{view.custom.eventDetails.scoring_sql}"
+                    },
+                    "queryPath": "destiny/scoring/awardsPlayerHighestSingleGameScore",
+                    "returnFormat": "json"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn value[0]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
+                "awardName": "Top Single Game Score",
+                "display": true,
+                "eventId": 3
+              },
+              "path": "Page/Embedded/playerAward"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "avgGameScore"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.displayData": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "destinyid": "{view.custom.playerInfo.destinyid}",
+                      "eventId": "{view.custom.eventDetails.id}",
+                      "eventScoring": "{view.custom.eventDetails.scoring_sql}"
+                    },
+                    "queryPath": "destiny/scoring/awardsPlayerAvgScore",
+                    "returnFormat": "json"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn value[0]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
+                "awardName": "Average Game Score",
+                "display": true,
+                "eventId": 3
+              },
+              "path": "Page/Embedded/playerAward"
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "justify": "space-around",
+          "style": {
+            "margin": "5px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "basis": "400px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "LIMIT": "\u0027LIMIT ALL\u0027",
+                  "destinyId": "{view.custom.playerInfo.destinyid}",
+                  "eventId": "{view.custom.eventDetails.id}",
+                  "eventScoring": "{view.custom.eventDetails.scoring_sql}"
+                },
+                "queryPath": "destiny/scoring/getEventActivitiesByPlayer",
+                "returnFormat": "json"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY HH:mm:ss",
+              "editable": false,
+              "field": "timestamp",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Date/Time"
+              },
+              "justify": "auto",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "date",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "Page/Embedded/dateTime",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "kills",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Kills"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "deaths",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Deaths"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "efficiency",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Efficiency"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "standing",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Standing"
+              },
+              "justify": "auto",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "game_score",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Score"
+              },
+              "justify": "auto",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            }
+          ],
+          "footerGroups": [
+            []
+          ],
+          "pager": {
+            "initialOption": 50
+          },
+          "rows": {
+            "subview": {
+              "viewPath": "Page/Embedded/clanStandings"
+            }
+          },
+          "selection": {
+            "enableRowSelection": false
+          },
+          "style": {
+            "margin": "5px"
+          }
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Page/Page"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

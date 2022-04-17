@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "aeebce65069ba2ef5a22aa6d3b2e468362f23f0652df5af2f4d72cae19624317",
+    "lastModificationSignature": "70dc86db78f4fee4fb3a8983ebd8c6a3249485e8059ec2c29b528082a6ee5484",
     "permissions": [
       {
         "zone": "",
@@ -27,13 +27,13 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-23T05:13:56Z"
+      "timestamp": "2022-03-29T23:37:32Z"
     },
     "parameters": [
       {
         "type": "Parameter",
-        "identifier": "eventName",
-        "sqlType": 7
+        "identifier": "event_id",
+        "sqlType": 2
       }
     ]
   }

@@ -1,1 +1,0 @@
-select * from events ORDER BY mode asc

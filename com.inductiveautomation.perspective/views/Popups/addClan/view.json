@@ -1,0 +1,141 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 600,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Markdown"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "props": {
+          "source": "### Add Clan to Destiny Clan Wars \n#\nTo add your clan to d2clanwars.com, first you will need to pull up your Clan\u0027s page on Bungie.net. You will see a long number at the end of the website address or URL after \"groupid\u003d\" copy that number and paste it into the field below. The process can take several minutes because it will scan your member list and add it to the database. DO NOT CLOSE THIS WINDOW until you get the message that the clan has been added. \n#\nNew Activities will start tracking every 30 minutes, full activity history won\u0027t be brought in until the overnight refresh. ",
+          "style": {
+            "margin": "5px"
+          }
+        },
+        "type": "ia.display.markdown"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "TextField"
+            },
+            "position": {
+              "basis": "150px",
+              "grow": 1
+            },
+            "props": {
+              "deferUpdates": false,
+              "placeholder": "Enter Clan Group ID",
+              "rejectUpdatesWhileFocused": false,
+              "style": {
+                "margin": "2.5px"
+              }
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tdef resetForm():\n\t\timport time\n\t\ttime.sleep(10)\n\t\tself.parent.parent.getChild(\"Label\").props.text \u003d \"\"\n\t\tself.parent.parent.getChild(\"Label\").position.display \u003d False\n\t\tself.parent.parent.getChild(\"Label\").props.style.color \u003d \"\"\n\t\tself.getSibling(\"TextField\").props.text \u003d \"\"\n\t\n\ttextField \u003d self.getSibling(\"TextField\").props.text\n\tif len(textField) \u003e 0:\n\t\tself.props.value \u003d 1\n\t\tnewClanId \u003d textField\n\t\t# Returns 1 for Success, 0 for Failure, 2 for Existing\n\t\taddClanScript \u003d destiny.clans.addClan(newClanId)\n\t\tif addClanScript \u003d\u003d 1:\n\t\t\tself.props.value \u003d 0\n\t\t\tself.parent.parent.getChild(\"Label\").props.text \u003d \"Clan Successfully Added\"\n\t\t\tself.parent.parent.getChild(\"Label\").position.display \u003d True\n\t\t\tself.parent.parent.getChild(\"Label\").props.style.color \u003d \"--success\"\n\t\t\tresetForm()\n\t\telif addClanScript \u003d\u003d 0:\n\t\t\tself.props.value \u003d 0\n\t\t\tself.parent.parent.getChild(\"Label\").props.text \u003d \"Error Adding Clan, Please Notify in Discord\"\n\t\t\tself.parent.parent.getChild(\"Label\").position.display \u003d True\n\t\t\tself.parent.parent.getChild(\"Label\").props.style.color \u003d \"--error\"\n\t\t\tresetForm()\n\t\telif addClanScript \u003d\u003d 2:\n\t\t\tself.props.value \u003d 0\n\t\t\tself.parent.parent.getChild(\"Label\").props.text \u003d \"Clan Already Exists in Database\"\n\t\t\tself.parent.parent.getChild(\"Label\").position.display \u003d True\n\t\t\tself.parent.parent.getChild(\"Label\").props.style.color \u003d \"--warning\"\n\t\t\tresetForm()\n\telse:\n\t\tself.props.value \u003d 0\n\t\tself.parent.parent.getChild(\"Label\").props.text \u003d \"Please Enter a Valid Clan ID\"\n\t\tself.parent.parent.getChild(\"Label\").position.display \u003d True\n\t\tself.parent.parent.getChild(\"Label\").props.style.color \u003d \"--error\"\n\t\tresetForm()"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "OneShotButton"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "readyState": {
+                "icon": {
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "margin": "2.5px"
+                },
+                "text": "Add Clan"
+              },
+              "style": {
+                "margin": "2.5px"
+              },
+              "writingState": {
+                "icon": {
+                  "path": "material/hourglass_empty",
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "margin": "2.5px"
+                },
+                "text": "Adding..."
+              }
+            },
+            "type": "ia.input.oneshotbutton"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "padding": "2.5px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "60px",
+          "display": false
+        },
+        "props": {
+          "style": {
+            "color": "--success",
+            "fontWeight": "bold",
+            "padding": "10px",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,467 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.key": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "icon": "computer",
+            "text": "Server Status"
+          },
+          "path": "Page/Embedded/Title"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "basis": "200px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "queryPath": "destiny/events/getUpcomingEvents",
+                "returnFormat": "dataset"
+              },
+              "type": "query"
+            }
+          },
+          "props.headerGroups[0][0].title": {
+            "binding": {
+              "config": {
+                "expression": "now(0)"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"Event Schedule -- Current Event: \" + destiny.events.getCurrentEvent()[\u0027event_name\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "event_name",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Name"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY HH:mm:ss",
+              "editable": false,
+              "field": "start_date",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Start Date"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY HH:mm:ss",
+              "editable": false,
+              "field": "end_date",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "End Date"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "date",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            }
+          ],
+          "enableHeaderGroups": true,
+          "headerGroups": [
+            [
+              {
+                "align": "center",
+                "justify": "center",
+                "span": 3,
+                "style": {
+                  "classes": "",
+                  "fontSize": "18px",
+                  "fontWeight": "bold",
+                  "height": "40px"
+                }
+              }
+            ]
+          ],
+          "pager": {
+            "bottom": false
+          },
+          "rows": {
+            "highlight": {
+              "enabled": false
+            }
+          },
+          "selection": {
+            "enableRowSelection": false
+          },
+          "style": {
+            "margin": "10px"
+          }
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "meta": {
+          "name": "Image",
+          "tooltip": {
+            "enabled": true,
+            "text": "Activities are updating..."
+          }
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]UpdateInProgress"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "fit": {
+            "mode": "contain"
+          },
+          "source": "https://i.gifer.com/W9jo.gif"
+        },
+        "type": "ia.display.image"
+      },
+      {
+        "custom": {
+          "avgUpdate": 0
+        },
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.lastUpdate": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "script": "\u0027syncIronBanner\u0027"
+                },
+                "polling": {
+                  "enabled": true,
+                  "rate": "60"
+                },
+                "queryPath": "api/getLastScriptTimestamp"
+              },
+              "transforms": [
+                {
+                  "formatType": "datetime",
+                  "formatValue": {
+                    "date": "short",
+                    "time": "short"
+                  },
+                  "type": "format"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "\"Last Update Completed @ \" + {this.custom.lastUpdate}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "fontSize": "12px",
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_2"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.clans": {
+            "binding": {
+              "config": {
+                "queryPath": "destiny/clans/countClans",
+                "returnFormat": "scalar"
+              },
+              "type": "query"
+            }
+          },
+          "custom.gamesPlayed": {
+            "binding": {
+              "config": {
+                "polling": {
+                  "enabled": true,
+                  "rate": "60"
+                },
+                "queryPath": "destiny/activities/countActivitiesPlayedToday",
+                "returnFormat": "scalar"
+              },
+              "type": "query"
+            }
+          },
+          "custom.players": {
+            "binding": {
+              "config": {
+                "queryPath": "destiny/players/getActivePlayers24HoursCount",
+                "returnFormat": "scalar"
+              },
+              "type": "query"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "numberFormat({this.custom.gamesPlayed}, \"#,###\") + \" Games From \" + numberFormat({this.custom.players}, \"#,###\") + \" Players In The Last 24 Hours. Tracking \" + {this.custom.clans} + \" Clans\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "fontSize": "12px",
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Page/Page"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

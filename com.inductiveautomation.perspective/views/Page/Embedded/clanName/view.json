@@ -1,0 +1,127 @@
+{
+  "custom": {
+    "clanInfo": {
+      "about": "Uprising Family Gaming is a growing XB1 community of highly connected gamers unified around the idea that we are all here to play games. The thing that holds us all together is that family comes first, even during a raid. This is the kind of group that understands that.\n\nTo facilitate the kind of communication we need, we use an external platform called Discord. This lets us operate multiple Uprising clans but still function as a big family. To apply simply request to set us as your Destiny clan and one of our admins will respond with a link to our application.\n\nThe clan membership process usually takes several days, because we like to know that new members will be a great fit with our existing community. If you found us, chances are you\u0027ll fit right in. Whether we\u0027re forming raid parties, dominating in the crucible, or supporting each other in the real world, We Are Uprising.\n\n-- The Nine --",
+      "callsign": "UW",
+      "founder": "FlawlessDesi#413",
+      "founderbungieid": 10048106,
+      "founderdestinyid": "4611686018443862947",
+      "id": 1163459,
+      "members": 1,
+      "motto": "Family, Fun, Gaming",
+      "name": "Uprising Warmind",
+      "registered_members": 46
+    },
+    "eventId": null,
+    "url": "https://www.bungie.net/en/ClanV2?groupid\u003d1163459"
+  },
+  "params": {
+    "value": 1163459
+  },
+  "propConfig": {
+    "custom.clanInfo": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "clanid": "{view.params.value}"
+          },
+          "queryPath": "destiny/clans/getClanInfo",
+          "returnFormat": "json"
+        },
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.eventId": {
+      "persistent": true
+    },
+    "custom.url": {
+      "binding": {
+        "config": {
+          "expression": "\"https://www.bungie.net/en/ClanV2?groupid\u003d\" + {view.custom.clanInfo.id}"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 40,
+      "width": 200
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "newTab": true,
+                "url": "{view.custom.url}"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.clanInfo.name} + \" [\" + {view.custom.clanInfo.callsign} + \"]\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--callToAction",
+            "cursor": "pointer",
+            "textDecoration": "underline"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "eventId",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\tself.view.custom.eventId \u003d payload[\u0027event_id\u0027]",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

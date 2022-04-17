@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "efafa9b56a20fc0c1229664adf30a07a2a7bd567abbbcdfbbd733ff6249e0543",
+    "lastModificationSignature": "ab77f1e7e9f26e4b90b416e121a11d160885502c4d484eef437696d5a55f4d2c",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +27,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-23T05:55:26Z"
+      "timestamp": "2022-03-29T23:29:34Z"
     },
     "parameters": [
       {
@@ -74,6 +74,11 @@
         "type": "Parameter",
         "identifier": "overall_winner_score",
         "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "eventid",
+        "sqlType": 2
       }
     ]
   }

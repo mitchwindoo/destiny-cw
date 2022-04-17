@@ -1,3 +1,3 @@
 SELECT *
 FROM events
-WHERE event_name = :eventName;
+WHERE id = :event_id;

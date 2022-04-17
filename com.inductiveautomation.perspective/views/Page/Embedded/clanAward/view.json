@@ -1,60 +1,16 @@
 {
-  "custom": {
-    "awardDetails": null,
-    "playerInfo": {
-      "characterids": "[\"2305843009260928881\", \"2305843009378868735\", \"2305843009654204283\"]",
-      "clanid": 1163459,
-      "destinyid": "4611686018432886684",
-      "membershiptype": 1,
-      "name": "MitchWindoo"
-    }
-  },
+  "custom": {},
   "params": {
     "awardDesc": "Awarded to the player with the highest average score *Minimum 10 games played*",
     "awardName": "Highest AVG Score",
-    "clanId": 1422232,
-    "display": false,
-    "namedQuery": "destiny/activities/awardsHighestAvgScore"
+    "display": true,
+    "displayData": {
+      "playerid": "",
+      "score": ""
+    },
+    "eventId": 3
   },
   "propConfig": {
-    "custom.awardDetails": {
-      "binding": {
-        "config": {
-          "struct": {
-            "clanId": "{view.params.clanId}",
-            "namedQuery": "{view.params.namedQuery}"
-          },
-          "waitOnAll": true
-        },
-        "transforms": [
-          {
-            "code": "\tquery \u003d system.dataset.toPyDataSet(system.db.runNamedQuery(value[\u0027namedQuery\u0027],{\u0027clanid\u0027:value[\u0027clanId\u0027]}))\n\tscore \u003d query[0][\u0027score\u0027]\n\tplayerId \u003d query[0][\u0027playerid\u0027]\n\t\n\treturn {\u0027score\u0027:score,\u0027playerId\u0027:playerId}\n\t",
-            "type": "script"
-          }
-        ],
-        "type": "expr-struct"
-      },
-      "persistent": true
-    },
-    "custom.playerInfo": {
-      "binding": {
-        "config": {
-          "parameters": {
-            "destinyid": "{view.custom.awardDetails.playerId}"
-          },
-          "queryPath": "destiny/clans/getPlayerInfo",
-          "returnFormat": "json"
-        },
-        "transforms": [
-          {
-            "code": "\treturn value[0]",
-            "type": "script"
-          }
-        ],
-        "type": "query"
-      },
-      "persistent": true
-    },
     "params.awardDesc": {
       "paramDirection": "input",
       "persistent": true
@@ -63,14 +19,10 @@
       "paramDirection": "input",
       "persistent": true
     },
-    "params.clanId": {
-      "paramDirection": "input",
-      "persistent": true
-    },
     "params.display": {
       "binding": {
         "config": {
-          "expression": "len({view.custom.awardDetails}) \u003e 0"
+          "expression": "len({view.params.displayData}) \u003e 0"
         },
         "overlayOptOut": true,
         "type": "expr"
@@ -78,7 +30,11 @@
       "paramDirection": "output",
       "persistent": true
     },
-    "params.namedQuery": {
+    "params.displayData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.eventId": {
       "paramDirection": "input",
       "persistent": true
     }
@@ -159,7 +115,7 @@
           "dom": {
             "onClick": {
               "config": {
-                "page": "/player/{view.custom.awardDetails.playerId}"
+                "page": "/event/{view.params.eventId}/player/view.params.displayData.playerid}"
               },
               "scope": "C",
               "type": "nav"
@@ -176,9 +132,19 @@
           "props.text": {
             "binding": {
               "config": {
-                "path": "view.custom.playerInfo.name"
+                "parameters": {
+                  "destinyid": "{view.params.displayData.playerid}"
+                },
+                "queryPath": "destiny/clans/getPlayerInfo",
+                "returnFormat": "json"
               },
-              "type": "property"
+              "transforms": [
+                {
+                  "code": "\treturn value[0][\u0027name\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
             }
           }
         },
@@ -209,7 +175,7 @@
           "props.text": {
             "binding": {
               "config": {
-                "expression": "numberFormat({view.custom.awardDetails.score},\"#,###.#\")"
+                "expression": "numberFormat({view.params.displayData.score},\"#,###.#\")"
               },
               "type": "expr"
             }
@@ -231,7 +197,7 @@
       "dom": {
         "onClick": {
           "config": {
-            "page": "/player/{view.custom.playerInfo.destinyid}"
+            "page": "/event/{view.params.eventId}/player/{view.params.displayData.playerid}"
           },
           "scope": "C",
           "type": "nav"

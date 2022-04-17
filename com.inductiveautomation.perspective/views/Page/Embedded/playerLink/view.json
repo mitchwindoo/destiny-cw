@@ -1,11 +1,15 @@
 {
   "custom": {
+    "eventId": 3,
     "playerInfo": null
   },
   "params": {
     "value": "4611686018429553000"
   },
   "propConfig": {
+    "custom.eventId": {
+      "persistent": true
+    },
     "custom.playerInfo": {
       "binding": {
         "config": {
@@ -44,7 +48,7 @@
           "dom": {
             "onClick": {
               "config": {
-                "page": "/player/{view.params.value}"
+                "page": "/event/{view.custom.eventId}/player/{view.params.value}"
               },
               "scope": "C",
               "type": "nav"
@@ -84,6 +88,19 @@
     },
     "props": {
       "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "eventId",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\tself.view.custom.eventId \u003d payload[\u0027event_id\u0027]",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
     },
     "type": "ia.container.flex"
   }

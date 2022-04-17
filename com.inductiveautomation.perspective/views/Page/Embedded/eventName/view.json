@@ -1,0 +1,96 @@
+{
+  "custom": {
+    "eventDetails": {
+      "end_date": 1647968400000,
+      "event_name": "PvP - Iron Banner",
+      "id": 1,
+      "mode": 19,
+      "scoring": "Kills \u003d 10 Points, Assists \u003d 2.5 Points, Deaths lose 5 points",
+      "scoring_sql": null,
+      "start_date": 1647363600000
+    }
+  },
+  "params": {
+    "value": 1
+  },
+  "propConfig": {
+    "custom.eventDetails": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "event_id": "{view.params.value}"
+          },
+          "queryPath": "destiny/events/getEventDetails",
+          "returnFormat": "json"
+        },
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 40,
+      "width": 200
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "page": "/event/{view.params.value}"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.custom.eventDetails.event_name"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--callToAction",
+            "cursor": "pointer",
+            "textDecoration": "underline"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

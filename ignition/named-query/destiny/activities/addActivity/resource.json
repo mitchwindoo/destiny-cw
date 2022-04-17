@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "Destiny_CW",
     "fallbackEnabled": false,
-    "lastModificationSignature": "0b40bc6a0c3336389629f347ae6cbf232963a7cf4ee00f5742324f6bde74ecdf",
+    "lastModificationSignature": "fb30014e883138902c37ea84ae899ddf9e41abcadd99f90b2bb7198ebb239800",
     "permissions": [
       {
         "zone": "",
@@ -27,7 +27,7 @@
     ],
     "lastModification": {
       "actor": "cwadmin",
-      "timestamp": "2022-03-23T15:22:27Z"
+      "timestamp": "2022-04-02T19:53:57Z"
     },
     "parameters": [
       {
@@ -147,13 +147,38 @@
       },
       {
         "type": "Parameter",
+        "identifier": "pgcr_extended",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
         "identifier": "timeplayed",
         "sqlType": 7
       },
       {
         "type": "Parameter",
-        "identifier": "pgcr_extended",
-        "sqlType": 7
+        "identifier": "timeplayed_seconds",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "clan_bonus",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "completed_value",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "start_seconds",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "started_from_beginning",
+        "sqlType": 6
       }
     ]
   }

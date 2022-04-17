@@ -26,14 +26,72 @@
           "basis": "56px",
           "shrink": 0
         },
+        "propConfig": {
+          "props.params.text": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "event_id": "{session.custom.currentEvent.id}"
+                },
+                "queryPath": "destiny/events/getEventDetails",
+                "returnFormat": "json"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\treturn \"Individual Scores For Event: \" + value[0][\u0027event_name\u0027] + \" // \" + system.date.format(system.date.fromMillis(value[0][\u0027start_date\u0027]), \"MMM dd, yyyy\") + \" - \" + system.date.format(system.date.fromMillis(value[0][\u0027end_date\u0027]), \"MMM dd, yyyy\") ",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
         "props": {
           "params": {
-            "icon": "person",
-            "text": "Individual Scores"
+            "icon": "person"
           },
           "path": "Page/Embedded/Title"
         },
         "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "event_id": "{session.custom.currentEvent.id}"
+                },
+                "queryPath": "destiny/events/getEventDetails",
+                "returnFormat": "json"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\treturn value[0][\u0027scoring\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "color": "--neutral-60",
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
       },
       {
         "meta": {
@@ -48,7 +106,11 @@
           "props.data": {
             "binding": {
               "config": {
-                "queryPath": "destiny/activities/getIndividualScores"
+                "parameters": {
+                  "eventId": "{session.custom.currentEvent.id}",
+                  "eventScoring": "{session.custom.currentEvent.scoring_sql}"
+                },
+                "queryPath": "destiny/scoring/getEventIndividualScores"
               },
               "type": "query"
             }
@@ -265,7 +327,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "destinyid",
+              "field": "playerid",
               "footer": {
                 "align": "center",
                 "justify": "left",
@@ -333,7 +395,7 @@
               "boolean": "checkbox",
               "dateFormat": "MM/DD/YYYY",
               "editable": false,
-              "field": "clanId",
+              "field": "clanid",
               "footer": {
                 "align": "center",
                 "justify": "left",

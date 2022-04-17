@@ -1,0 +1,72 @@
+{
+  "custom": {
+    "playerInfo": null
+  },
+  "params": {
+    "value": "4611686018429553000"
+  },
+  "propConfig": {
+    "custom.playerInfo": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "destinyid": "{view.params.value}"
+          },
+          "queryPath": "destiny/clans/getPlayerInfo",
+          "returnFormat": "json"
+        },
+        "overlayOptOut": true,
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 40,
+      "width": 150
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.custom.playerInfo.name"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

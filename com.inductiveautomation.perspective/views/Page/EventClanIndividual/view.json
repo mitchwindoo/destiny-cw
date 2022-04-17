@@ -1,0 +1,785 @@
+{
+  "custom": {
+    "clanInfo": {
+      "about": "Paragons of Abbadon holds respect in the highest position. \nWe pride ourselves on our non-toxicity. \nWe raid.We PVP. We drink. We bond.\nWe are a family here.\nShoulder deep.",
+      "callsign": "PoA",
+      "founder": "Megazoid1627#4676",
+      "founderbungieid": 11194095,
+      "founderdestinyid": "4611686018432756207",
+      "id": 4125823,
+      "members": 8,
+      "motto": "Respect your enemies as you destroy them.",
+      "name": "Paragons of Abbadon",
+      "registered_members": 87
+    },
+    "eventDetails": {
+      "end_date": 1648573200000,
+      "event_name": "PvP - Trials of Osiris",
+      "id": 3,
+      "mode": 84,
+      "scoring": "Kills \u003d 10 Points, Assists \u003d 2.5 Points, Deaths lose 5 points",
+      "scoring_sql": "(((activities.kills*10)+(activities.assists*2.5))-(activities.deaths*5))",
+      "start_date": 1648227600000
+    }
+  },
+  "params": {
+    "clanid": 4125823,
+    "eventid": 3
+  },
+  "propConfig": {
+    "custom.clanInfo": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "clanid": "{view.params.clanid}"
+          },
+          "queryPath": "destiny/clans/getClanInfo",
+          "returnFormat": "json"
+        },
+        "overlayOptOut": true,
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.eventDetails": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "event_id": "{view.params.eventid}"
+          },
+          "queryPath": "destiny/events/getEventDetails",
+          "returnFormat": "json"
+        },
+        "transforms": [
+          {
+            "code": "\treturn value[0]",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "params.clanid": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.eventid": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "newTab": true,
+                "url": "{/root/Title.custom.url}"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.url": {
+            "binding": {
+              "config": {
+                "expression": "\"https://www.bungie.net/en/ClanV2?groupid\u003d\" + {view.custom.clanInfo.id}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.params.text": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "event_id": "{view.params.eventid}"
+                },
+                "queryPath": "destiny/events/getEventDetails",
+                "returnFormat": "json"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\treturn self.view.custom.clanInfo.name + \" Scores For Event: \" + value[0][\u0027event_name\u0027] + \" // \" + system.date.format(system.date.fromMillis(value[0][\u0027start_date\u0027]), \"MMM dd, yyyy\") + \" - \" + system.date.format(system.date.fromMillis(value[0][\u0027end_date\u0027]), \"MMM dd, yyyy\") ",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "icon": "show_chart"
+          },
+          "path": "Page/Embedded/Title",
+          "style": {
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "event_id": "{view.params.eventid}"
+                },
+                "queryPath": "destiny/events/getEventDetails",
+                "returnFormat": "json"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\treturn value[0][\u0027scoring\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "color": "--neutral-60",
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "mvp"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.clanId": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.eventDetails.id"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.displayData": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "clanid": "{view.custom.clanInfo.id}",
+                      "eventId": "{view.custom.eventDetails.id}"
+                    },
+                    "queryPath": "destiny/scoring/awardsClanMostGames",
+                    "returnFormat": "json"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn value[0]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Most games played",
+                "awardName": "MVP",
+                "display": true
+              },
+              "path": "Page/Embedded/clanAward",
+              "style": {
+                "overflow": "visible"
+              },
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "avgScore"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.displayData": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "clanId": "{view.custom.clanInfo.id}",
+                      "eventId": "{view.custom.eventDetails.id}",
+                      "eventScoring": "{view.custom.eventDetails.scoring_sql}"
+                    },
+                    "queryPath": "destiny/scoring/awardsClanHighestAvgScore",
+                    "returnFormat": "json"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn value[0]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "query"
+                }
+              },
+              "props.params.eventId": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.eventDetails.id"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Highest average score",
+                "awardName": "Top AVG Score",
+                "display": true
+              },
+              "path": "Page/Embedded/clanAward",
+              "style": {
+                "overflow": "visible"
+              },
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "singleScore"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.displayData": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "clanId": "{view.custom.clanInfo.id}",
+                      "eventId": "{view.custom.eventDetails.id}",
+                      "eventScoring": "{view.custom.eventDetails.scoring_sql}"
+                    },
+                    "queryPath": "destiny/scoring/awardsClanHighestSingleGameScore",
+                    "returnFormat": "json"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn value[0]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "query"
+                }
+              },
+              "props.params.eventId": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.eventDetails.id"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Highest score in a single game",
+                "awardName": "Top Game Score",
+                "display": true
+              },
+              "path": "Page/Embedded/clanAward",
+              "style": {
+                "overflow": "visible"
+              },
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "kd"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.params.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.displayData": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "clanid": "{view.custom.clanInfo.id}",
+                      "eventId": "{view.custom.eventDetails.id}"
+                    },
+                    "queryPath": "destiny/scoring/awardsClanHighestKD",
+                    "returnFormat": "json"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn value[0]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "query"
+                }
+              },
+              "props.params.eventId": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.eventDetails.id"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "awardDesc": "Highest AVG Kill/Death Ratio",
+                "awardName": "Top K/D",
+                "display": true
+              },
+              "path": "Page/Embedded/clanAward",
+              "style": {
+                "overflow": "visible"
+              },
+              "useDefaultViewWidth": true
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "justify": "space-around",
+          "style": {
+            "margin": "5px",
+            "overflow": "visible"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "basis": "400px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "LIMIT": "\u0027LIMIT ALL\u0027",
+                  "clanId": "{view.params.clanid}",
+                  "eventId": "{view.custom.eventDetails.id}",
+                  "eventScoring": "{view.custom.eventDetails.scoring_sql}"
+                },
+                "queryPath": "destiny/scoring/getEventScoreByClan"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "position",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Place"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 75
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "gamesplayed",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Games"
+              },
+              "justify": "center",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 75
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "game_score",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Score"
+              },
+              "justify": "left",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 100
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "playerid",
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Player"
+              },
+              "justify": "auto",
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "view",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "Page/Embedded/playerLink",
+              "visible": true,
+              "width": ""
+            }
+          ],
+          "pager": {
+            "initialOption": 50
+          },
+          "rows": {
+            "subview": {
+              "viewPath": "Page/Embedded/clanStandings"
+            }
+          },
+          "selection": {
+            "enableRowSelection": false
+          },
+          "style": {
+            "margin": "5px"
+          }
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.sendMessage": {
+        "binding": {
+          "config": {
+            "expression": "now(1000)"
+          },
+          "type": "expr"
+        },
+        "onChange": {
+          "enabled": null,
+          "script": "\tsystem.perspective.sendMessage(\"eventId\", payload \u003d {\"event_id\":self.view.params.eventid}, scope \u003d \"page\")"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Page/Page"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

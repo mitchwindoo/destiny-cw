@@ -4,6 +4,7 @@ Valid Activity Modes are:
 Strike: 3, Raid: 4, AllPvP: 5, AllPvE: 7, Control: 10, Clash: 12, CrimsonDoubles: 15, 
 ScoredNightfall: 46, AllStrikes: 18, IronBanner: 19, AllMayhem: 25, Rumble: 48, 
 Gambit: 63, AllPvECompetitive: 64, PvPCompetitive: 69, PvPQuickplay: 70, Elimination: 80, Momentum: 81, Dungeon: 82, TrialsOfOsiris: 84
+https://bungie-net.github.io/multi/schema_Destiny-HistoricalStats-Definitions-DestinyActivityModeType.html#schema_Destiny-HistoricalStats-Definitions-DestinyActivityModeType
 """
 
 # Global Imports
@@ -15,62 +16,42 @@ api = system.net.httpClient(redirect_policy="ALWAYS")
 apiKey = system.db.runNamedQuery("api/getApiKey", {})
 apiRoot = "https://www.bungie.net/Platform"
 header = {"X-API-Key":apiKey}
-logger = system.util.getLogger("activities")
-
-# Placeholder with the standard return format for Bungie API calls
-def bungieApiCall():
-	# Builds the API URL with the base and the actual API path
-	apiUrl = apiRoot + "/Destiny2/1/Profile/4611686018432886684/"
-	# Performs the HTTP Get using the httpClient set in the Global Props
-	apiCall = api.get(url=apiUrl,headers=header)
-	# Checks if the response to the httpGet request returned a 200 (Good) value
-	if apiCall.good:
-		# Response dict standard in Bungie API Calls, returned in a json format.
-		Response = apiCall.json['Response']
-		# Error Code standard in Bungie API Calls, returned in a json format.
-		ErrorCode = int(apiCall.json['ErrorCode'])
-		# Throttle Seconds standard in Bungie API Calls, returned in a json format.
-		ThrottleSeconds = int(apiCall.json['ThrottleSeconds'])
-		# Error Status standard in Bungie API Calls, returned in a json format.
-		ErrorStatus = str(apiCall.json['ErrorStatus'])
-		# Message Status standard in Bungie API Calls, returned in a json format.
-		Message = apiCall.json['Message']
-		# Do something if the API Call is successful
-		logger.debug("apiCall " + str(apiCall.url) + " Succeeded, status code: " + str(apiCall.statusCode))
-		print "apiCall " + str(apiCall.url) + " Succeeded, status code: " + str(apiCall.statusCode)
-		if len(Response) > 0:
-			# If there is any data in the Response dict, do something with it
-			logger.debug("apiCall " + str(apiCall.url) + " returned a Response")
-			print "apiCall " + str(apiCall.url) + " returned a Response"
-		else:
-			# Move along if the Response dict is empty
-			logger.debug("apiCall " + str(apiCall.url) + " returned an empty Response.")
-			print "apiCall " + str(apiCall.url) + " returned an empty Response."
-			pass
-	else:
-		logger.error("apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode))
-		print "apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode)
+logger = system.util.getLogger("Activities")
 
 def getPostGameCarnageReport(activityId,destinyMembershipId):
 	activityId = str(activityId)
 	destinyMembershipId = str(destinyMembershipId)
+	clanId = system.dataset.toPyDataSet(system.db.runNamedQuery("destiny/clans/getPlayerInfo", {'destinyid':destinyMembershipId}))[0]['clanid']
+	clanBonus = 0 
 	apiUrl = apiRoot + "/Destiny2/Stats/PostGameCarnageReport/" + activityId + "/"
 	apiCall = api.get(url=apiUrl,headers=header)
 	if apiCall.good:
 		Response = apiCall.json['Response']
+		#print json.dumps(Response, indent=4, sort_keys=True)
 		for entry in Response['entries']:
+			#print json.dumps(entry, indent=4, sort_keys=True)
+			#print entry['player']['destinyUserInfo']['membershipId']
 			if entry['player']['destinyUserInfo']['membershipId'] == destinyMembershipId:
 				try:
 					pgcr_extended = entry['extended']
 				except:
 					pgcr_extended = {}
 				logger.debug("getPostGameCarnageReport for activity " + activityId + " Completed")
-				return {'pgcr_extended':pgcr_extended}
+			else:
+				clanMember = system.db.runNamedQuery("destiny/clans/getClanMatch", {'playerid':str(entry['player']['destinyUserInfo']['membershipId']),'clanid':str(clanId)})
+				if clanMember == 1:
+					clanBonus = clanBonus + 0.05
+		if clanBonus > 0.25:
+			clanBonus = 1.25
+		else:
+			clanBonus = clanBonus + 1	
+		return {'pgcr_extended':pgcr_extended,'clan_bonus':clanBonus,'started_from_beginning':Response['activityWasStartedFromBeginning']}
 	else:
 		logger.error("apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode))
 		#print "apiCall " + str(apiCall.url) + " Failed, status code: " + str(apiCall.statusCode)
 
 def getActivities(membershipType,destinyMembershipId,characterId,queryString):
+	startTime = time.time()
 	apiUrl = apiRoot + "/Destiny2/" + str(membershipType) + "/Account/" + str(destinyMembershipId) + "/Character/" + str(characterId) + "/Stats/Activities/" + queryString
 	apiCall = api.get(url=apiUrl,headers=header)
 	if apiCall.good:
@@ -100,8 +81,9 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 					logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " does not exist in database")
 					timestamp = datetime.strptime(activity['period'], '%Y-%m-%dT%H:%M:%SZ')
 					#print type(timestamp)
-					# Check if the activity in the returned data is in the current year, keeps the old data from re-populating
+					# Check if the activity in the returned data is in the current week, keeps the old data from re-populating
 					dataCurrent = system.date.isAfter(system.date.parse(timestamp), system.date.addWeeks(system.date.now(), -1))
+					#dataCurrent = True
 					if dataCurrent == True:
 						#print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " data is being added to the database"
 						logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " data is being added to the database")
@@ -109,7 +91,7 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 							pgcr = getPostGameCarnageReport(str(activity['activityDetails']['instanceId']),str(destinyMembershipId))
 						except:
 							logger.error("Failed to get PGCR on " + str(activity['activityDetails']['instanceId']) + ", PlayerId: " + str(destinyMembershipId))
-							pgcr = {'pgcr_extended':{}}
+							pgcr = {'pgcr_extended':{},'clan_bonus':1,'started_from_beginning':False}
 						try:
 							standing = activity['values']['standing']['basic']['displayValue']
 						except:
@@ -126,6 +108,7 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 							'activityduration':activity['values']['activityDurationSeconds']['basic']['displayValue'],
 							'assists':activity['values']['assists']['basic']['value'],
 							'completed':activity['values']['completed']['basic']['displayValue'],
+							'completed_value':activity['values']['completed']['basic']['value'],
 							'completionreason':activity['values']['completionReason']['basic']['displayValue'],
 							'deaths':activity['values']['deaths']['basic']['value'],
 							'efficiency':activity['values']['efficiency']['basic']['value'],
@@ -139,10 +122,16 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 							'team':activity['values']['team']['basic']['value'],
 							'teamscore':activity['values']['teamScore']['basic']['value'],
 							'timeplayed':activity['values']['timePlayedSeconds']['basic']['displayValue'],
-							'pgcr_extended':json.dumps(pgcr['pgcr_extended'])}
+							'timeplayed_seconds':activity['values']['timePlayedSeconds']['basic']['value'],
+							'pgcr_extended':json.dumps(pgcr['pgcr_extended']),
+							'clan_bonus':pgcr['clan_bonus'],
+							'start_seconds':activity['values']['startSeconds']['basic']['value'],
+							'started_from_beginning':pgcr['started_from_beginning']}
 						#print queryParams
 						queryPath = 'destiny/activities/addActivity'
 						system.db.runNamedQuery(queryPath, queryParams)
+						executionTime = (time.time() - startTime)
+						print "destiny.activities.getActivities Script completed in " + str(executionTime) + " seconds"
 					else:
 						#print "ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " being skipped due to age"
 						logger.debug("ironBanner: Activity ID " + str(activity['activityDetails']['instanceId']) + " being skipped due to age")
@@ -158,33 +147,61 @@ def getActivities(membershipType,destinyMembershipId,characterId,queryString):
 		#print "apiCall " + str(apiCall.url) + "  Failed, status code: " + str(apiCall.statusCode)
 
 def updateActivities(mode):
+	batchSize = 25
+	delayTime = 10
 	startTime = time.time()
-	queryParams = {}
 	logger.info("destiny.activities.update Started")
-	#print queryParams
-	queryPath = 'destiny/clans/getAllPlayers'
-	playerList = system.dataset.toPyDataSet(system.db.runNamedQuery(queryPath, queryParams))
-	for player in playerList:
+	system.tag.writeBlocking(["[default]UpdateInProgress"],[True])
+	activePlayerList = system.dataset.toPyDataSet(system.db.runNamedQuery("destiny/players/getActivePlayers", {}))
+	characterList = []
+	for player in activePlayerList:
 		characters = json.loads(player['characterids'])
-		for i in characters:
-			getActivities(player['membershiptype'],player['destinyid'],i,"?mode="+str(mode)+"&count=5")
+		for character in characters:
+			recentlyOnline = system.date.isAfter(system.date.parse(character['lastOnline']), system.date.addHours(system.date.now(), -2))
+			if recentlyOnline == True:
+				characterList.append({'membershiptype':player['membershiptype'],'destinyid':str(player['destinyid']),'characterid':str(character['characterid']),'queryString':"?mode="+str(mode)+"&count=10"})
+	while characterList:
+		batch = characterList[:batchSize]
+		print batch
+		for i in batch:
+			def updateActivities():
+				destiny.activities.getActivities(i['membershiptype'],i['destinyid'],i['characterid'],i['queryString'])
+			thread = system.util.invokeAsynchronous(updateActivities)
+			logger.debug(str(thread))
+		characterList = characterList[batchSize:]
+		time.sleep(delayTime)
 	executionTime = (time.time() - startTime)
 	system.db.runNamedQuery("api/scriptLogs", {"script":"destiny.activities.update","script_runtime":executionTime})
 	print "destiny.activities.update Script completed in " + str(executionTime) + " seconds"
+	system.tag.writeBlocking(["[default]UpdateInProgress"],[False])
 	logger.info("destiny.activities.update Script completed in " + str(executionTime) + " seconds")
 
 def fullSyncActivities(mode):
+	batchSize = 10
+	delayTime = 30
 	startTime = time.time()
-	queryParams = {}
-	logger.info("destiny.activities.fullSync Started")
-	#print queryParams
-	queryPath = 'destiny/clans/getAllPlayers'
-	playerList = system.dataset.toPyDataSet(system.db.runNamedQuery(queryPath, queryParams))
-	for player in playerList:
+	logger.info("destiny.activities.fullSyncActivities Started")
+	system.tag.writeBlocking(["[default]UpdateInProgress"],[True])
+	activePlayerList = system.dataset.toPyDataSet(system.db.runNamedQuery("destiny/players/getActivePlayers", {}))
+	characterList = []
+	for player in activePlayerList:
 		characters = json.loads(player['characterids'])
-		for i in characters:
-			getActivities(player['membershiptype'],player['destinyid'],i,"?mode="+str(mode))
+		for character in characters:
+			recentlyOnline = system.date.isAfter(system.date.parse(character['lastOnline']), system.date.addDays(system.date.now(), -2))
+			if recentlyOnline == True:
+				characterList.append({'membershiptype':player['membershiptype'],'destinyid':str(player['destinyid']),'characterid':str(character['characterid']),'queryString':"?mode="+str(mode)})
+	while characterList:
+		batch = characterList[:batchSize]
+		print batch
+		for i in batch:
+			def updateActivities():
+				destiny.activities.getActivities(i['membershiptype'],i['destinyid'],i['characterid'],i['queryString'])
+			thread = system.util.invokeAsynchronous(updateActivities)
+			logger.debug(str(thread))
+		characterList = characterList[batchSize:]
+		time.sleep(delayTime)
 	executionTime = (time.time() - startTime)
 	system.db.runNamedQuery("api/scriptLogs", {"script":"destiny.activities.fullSync","script_runtime":executionTime})
 	print "destiny.activities.fullSync Script completed in " + str(executionTime) + " seconds"
+	system.tag.writeBlocking(["[default]UpdateInProgress"],[False])
 	logger.info("destiny.activities.fullSync Script completed in " + str(executionTime) + " seconds")

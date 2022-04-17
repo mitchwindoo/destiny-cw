@@ -1,34 +1,17 @@
 {
-  "custom": {
-    "leaderboard": {
-      "clanId": 3700850
-    }
-  },
+  "custom": {},
   "params": {
     "awardDesc": "",
     "awardName": "Highest Overall Score",
     "display": true,
-    "namedQuery": "destiny/activities/getTotalActivityScore"
+    "eventId": 1,
+    "queryData": {
+      "clanId": "",
+      "game_score": "",
+      "position": 1
+    }
   },
   "propConfig": {
-    "custom.leaderboard": {
-      "binding": {
-        "config": {
-          "struct": {
-            "namedQuery": "{view.params.namedQuery}"
-          },
-          "waitOnAll": true
-        },
-        "transforms": [
-          {
-            "code": "\tquery \u003d system.dataset.toPyDataSet(system.db.runNamedQuery(value[\u0027namedQuery\u0027],{}))\n\tclanId \u003d query[0][\u0027clanid\u0027]\n\tscore \u003d query[0][\u0027game_score\u0027]\n\t\t\n\treturn {\u0027clanId\u0027:clanId}\n\t",
-            "type": "script"
-          }
-        ],
-        "type": "expr-struct"
-      },
-      "persistent": true
-    },
     "params.awardDesc": {
       "paramDirection": "input",
       "persistent": true
@@ -40,7 +23,7 @@
     "params.display": {
       "binding": {
         "config": {
-          "expression": "len({view.custom.leaderboard}) \u003e 0"
+          "expression": "len({view.params.queryData}) \u003e 0"
         },
         "overlayOptOut": true,
         "type": "expr"
@@ -48,7 +31,11 @@
       "paramDirection": "output",
       "persistent": true
     },
-    "params.namedQuery": {
+    "params.eventId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.queryData": {
       "paramDirection": "input",
       "persistent": true
     }
@@ -63,7 +50,7 @@
     "children": [
       {
         "meta": {
-          "name": "Label"
+          "name": "Title"
         },
         "position": {
           "shrink": 0
@@ -93,7 +80,7 @@
       },
       {
         "meta": {
-          "name": "Label_0"
+          "name": "Desc"
         },
         "position": {
           "grow": 1
@@ -137,7 +124,7 @@
           "dom": {
             "onClick": {
               "config": {
-                "page": "/clan/{view.custom.leaderboard.clanId}"
+                "page": "/event/{view.params.eventId}/clan/{view.params.queryData.clanId}"
               },
               "scope": "C",
               "type": "nav"
@@ -145,7 +132,7 @@
           }
         },
         "meta": {
-          "name": "Label_1"
+          "name": "ClanName"
         },
         "position": {
           "grow": 1,
@@ -156,7 +143,7 @@
             "binding": {
               "config": {
                 "parameters": {
-                  "clanid": "{view.custom.leaderboard.clanId}"
+                  "clanid": "{view.params.queryData.clanId}"
                 },
                 "queryPath": "destiny/clans/getClanInfo",
                 "returnFormat": "json"
@@ -191,7 +178,7 @@
       "dom": {
         "onClick": {
           "config": {
-            "page": "/clan/{view.custom.leaderboard.clanId}"
+            "page": "/event/{view.params.eventId}/clan/{view.params.queryData.clanId}"
           },
           "scope": "C",
           "type": "nav"

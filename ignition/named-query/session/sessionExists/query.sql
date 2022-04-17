@@ -1,0 +1,1 @@
+select exists(select 1 from sessions where device_id=:device_id)
